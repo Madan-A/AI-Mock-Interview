@@ -49,6 +49,8 @@ export async function createFeedback(params: CreateFeedbackParams) {
       createdAt: new Date().toISOString(),
     };
 
+    console.log(feedback);
+
     let feedbackRef;
 
     if (feedbackId) {
