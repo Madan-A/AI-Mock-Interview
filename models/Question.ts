@@ -1,6 +1,13 @@
 import { Schema, model, models } from "mongoose";
 
-export type QuestionCategory = "quants" | "logical" | "verbal";
+export type QuestionCategory =
+  | "quants"
+  | "logical"
+  | "verbal"
+  | "os"
+  | "dbms"
+  | "cn"
+  | "dsa";
 
 export interface QuestionDoc {
   category: QuestionCategory;
@@ -13,7 +20,7 @@ const QuestionSchema = new Schema<QuestionDoc>(
   {
     category: {
       type: String,
-      enum: ["quants", "logical", "verbal"],
+      enum: ["quants", "logical", "verbal", "os", "dbms", "cn", "dsa"],
       required: true,
     },
     question: { type: String, required: true },

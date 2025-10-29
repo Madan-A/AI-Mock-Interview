@@ -1,17 +1,34 @@
 import AssessmentClient from "@/components/AssessmentClient";
+import AssessmentSectionPickerClient from "@/components/AssessmentSectionPickerClient";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import { redirect } from "next/navigation";
 
-export default async function AssessmentPage() {
+export default async function AssessmentPage({
+  searchParams,
+}: {
+  searchParams?: Record<string, string | string[] | undefined>;
+}) {
   const user = await getCurrentUser();
   if (!user) {
     redirect("/sign-in");
     return null;
   }
 
+  const sectionParam = (searchParams?.section as string) || "";
+  const section =
+    sectionParam === "technical"
+      ? "technical"
+      : sectionParam === "aptitude"
+      ? "aptitude"
+      : "";
+
   return (
     <div className="container mx-auto max-w-3xl py-6">
-      <AssessmentClient />
+      {section ? (
+        <AssessmentClient section={section as "aptitude" | "technical"} />
+      ) : (
+        <AssessmentSectionPickerClient />
+      )}
     </div>
   );
 }

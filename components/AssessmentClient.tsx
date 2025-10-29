@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 type Question = {
   id: string;
   index: number;
-  category: "quants" | "logical" | "verbal";
+  category: "quants" | "logical" | "verbal" | "os" | "dbms" | "cn" | "dsa";
   question: string;
   options: string[];
   correctAnswer: string;
@@ -14,7 +14,11 @@ type Question = {
 
 const TEST_DURATION_MS = 30 * 60 * 1000; // 30 minutes
 
-export default function AssessmentClient() {
+export default function AssessmentClient({
+  section = "aptitude",
+}: {
+  section?: "aptitude" | "technical";
+}) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<Record<string, string>>({});
@@ -25,7 +29,7 @@ export default function AssessmentClient() {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const res = await fetch("/api/assessment/questions", {
+      const res = await fetch(`/api/assessment/questions?section=${section}`, {
         cache: "no-store",
       });
       if (!res.ok) return;

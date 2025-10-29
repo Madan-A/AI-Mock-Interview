@@ -10,7 +10,7 @@ const QuestionSchema = new mongoose.Schema(
   {
     category: {
       type: String,
-      enum: ["quants", "logical", "verbal"],
+      enum: ["quants", "logical", "verbal", "os", "dbms", "cn", "dsa"],
       required: true,
     },
     question: { type: String, required: true },
@@ -81,7 +81,19 @@ async function main() {
   const quants = buildCategorySet("quants");
   const logical = buildCategorySet("logical");
   const verbal = buildCategorySet("verbal");
-  const data = [...quants, ...logical, ...verbal];
+  const os = buildCategorySet("os");
+  const dbms = buildCategorySet("dbms");
+  const cn = buildCategorySet("cn");
+  const dsa = buildCategorySet("dsa");
+  const data = [
+    ...quants,
+    ...logical,
+    ...verbal,
+    ...os,
+    ...dbms,
+    ...cn,
+    ...dsa,
+  ];
 
   if (data.length === 0) {
     console.error(
@@ -94,7 +106,7 @@ async function main() {
   await Question.deleteMany({});
   const inserted = await Question.insertMany(data);
   console.log(
-    `Seeded ${inserted.length} questions (quants: ${quants.length}, logical: ${logical.length}, verbal: ${verbal.length}).`
+    `Seeded ${inserted.length} questions (quants: ${quants.length}, logical: ${logical.length}, verbal: ${verbal.length}, os: ${os.length}, dbms: ${dbms.length}, cn: ${cn.length}, dsa: ${dsa.length}).`
   );
 
   await mongoose.disconnect();
