@@ -1,0 +1,25 @@
+[
+  {
+    "category": "logical",
+    "question": "All roses are flowers. Some flowers fade quickly. Which is true?",
+    "options": [
+      "Some roses fade quickly",
+      "No roses fade quickly",
+      "All flowers are roses",
+      "Some flowers are not roses"
+    ],
+    "correctAnswer": "Some flowers are not roses"
+  },
+  {
+    "category": "logical",
+    "question": "Find the odd one out: 2, 6, 12, 20, 30, 42, 56",
+    "options": ["6", "12", "30", "42"],
+    "correctAnswer": "30"
+  },
+  {
+    "category": "logical",
+    "question": "If MONDAY is coded as NPOEBZ, how is FRIDAY coded?",
+    "options": ["GSJEBZ", "GSJEBY", "ESHCAX", "GSIHBZ"],
+    "correctAnswer": "GSJEBZ"
+  }
+]

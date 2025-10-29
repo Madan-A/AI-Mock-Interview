@@ -61,8 +61,74 @@ const Agent = ({
       setIsSpeaking(false);
     };
 
-    const onError = (error: Error) => {
-      console.log("Error:", error);
+    const onError = (error: unknown) => {
+      // Try to extract a concise, helpful message from VAPI errors which
+      // sometimes arrive as objects and sometimes as already-stringified JSON.
+      const extractMessage = (e: any): string | null => {
+        if (!e) return null;
+        if (typeof e === "string") return e;
+        // common nested locations observed in VAPI errors
+        return (
+          e?.error?.error?.message ??
+          e?.error?.message ??
+          e?.message ??
+          e?.data?.error?.message ??
+          null
+        );
+      };
+
+      let pretty: string | null = null;
+
+      if (typeof error === "string") {
+        // maybe a JSON string
+        try {
+          const parsed = JSON.parse(error);
+          pretty = extractMessage(parsed) ?? JSON.stringify(parsed, null, 2);
+        } catch {
+          pretty = error;
+        }
+      } else if (typeof error === "object" && error !== null) {
+        pretty =
+          extractMessage(error as any) ??
+          (() => {
+            try {
+              return JSON.stringify(error, null, 2);
+            } catch {
+              return String(error);
+            }
+          })();
+      } else {
+        pretty = String(error);
+      }
+
+      console.error("VAPI Error:", pretty);
+
+      // If this looks like a billing/credits error, surface it to the user
+      try {
+        const msg = (pretty || "").toString();
+        if (
+          /wallet balance|purchase more credits|upgrade your plan|insufficient funds/i.test(
+            msg
+          )
+        ) {
+          // revert call state so user can retry after resolution
+          setCallStatus(CallStatus.INACTIVE);
+          alert(
+            "VAPI error: " +
+              msg +
+              "\nPlease top up your account or contact support."
+          );
+        }
+      } catch {
+        // ignore
+      }
+
+      // Also keep the raw payload available for debugging
+      try {
+        console.debug("VAPI Error (raw):", error);
+      } catch {
+        // ignore
+      }
     };
 
     vapi.on("call-start", onCallStart);
@@ -118,12 +184,34 @@ const Agent = ({
     setCallStatus(CallStatus.CONNECTING);
 
     if (type === "generate") {
-      await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
-        variableValues: {
-          username: userName,
-          userid: userId,
-        },
-      });
+      const workflowId = process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID;
+
+      if (!workflowId) {
+        console.error(
+          "Missing NEXT_PUBLIC_VAPI_WORKFLOW_ID env var. Aborting VAPI start."
+        );
+        // revert state to allow retry
+        setCallStatus(CallStatus.INACTIVE);
+        alert(
+          "VAPI workflow id is not configured. Please set NEXT_PUBLIC_VAPI_WORKFLOW_ID and reload."
+        );
+        return;
+      }
+
+      try {
+        await vapi.start(workflowId, {
+          variableValues: {
+            username: userName,
+            userid: userId,
+          },
+        });
+      } catch (err) {
+        console.error("Failed to start VAPI workflow:", err);
+        setCallStatus(CallStatus.INACTIVE);
+        // show user-friendly message
+        alert("Failed to start AI interviewer. See console for details.");
+        return;
+      }
     } else {
       let formattedQuestions = "";
       if (questions) {
@@ -132,11 +220,18 @@ const Agent = ({
           .join("\n");
       }
 
-      await vapi.start(interviewer, {
-        variableValues: {
-          questions: formattedQuestions,
-        },
-      });
+      try {
+        await vapi.start(interviewer, {
+          variableValues: {
+            questions: formattedQuestions,
+          },
+        });
+      } catch (err) {
+        console.error("Failed to start VAPI interviewer flow:", err);
+        setCallStatus(CallStatus.INACTIVE);
+        alert("Failed to start AI interviewer. See console for details.");
+        return;
+      }
     }
   };
 

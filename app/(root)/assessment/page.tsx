@@ -1,22 +1,17 @@
-import Agent from "@/components/Agent";
+import AssessmentClient from "@/components/AssessmentClient";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import { redirect } from "next/navigation";
 
-const Page = async () => {
+export default async function AssessmentPage() {
   const user = await getCurrentUser();
-
   if (!user) {
     redirect("/sign-in");
     return null;
   }
 
   return (
-    <>
-      <h3>Interview generation</h3>
-
-      <Agent userName={user.name} userId={user.id} type="generate" />
-    </>
+    <div className="container mx-auto max-w-3xl py-6">
+      <AssessmentClient />
+    </div>
   );
-};
-
-export default Page;
+}

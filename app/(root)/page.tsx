@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import InterviewCard from "@/components/InterviewCard";
 
 import { getCurrentUser } from "@/lib/actions/auth.action";
+import { redirect } from "next/navigation";
 import {
   getInterviewsByUserId,
   getLatestInterviews,
@@ -13,13 +14,21 @@ import {
 async function Home() {
   const user = await getCurrentUser();
 
-  const [userInterviews, allInterview] = await Promise.all([
-    getInterviewsByUserId(user?.id!),
-    getLatestInterviews({ userId: user?.id! }),
+  if (!user) {
+    redirect("/sign-in");
+    return null;
+  }
+
+  const [userInterviewsRaw, allInterviewRaw] = await Promise.all([
+    getInterviewsByUserId(user.id),
+    getLatestInterviews({ userId: user.id }),
   ]);
 
-  const hasPastInterviews = userInterviews?.length! > 0;
-  const hasUpcomingInterviews = allInterview?.length! > 0;
+  const userInterviews = userInterviewsRaw ?? [];
+  const allInterview = allInterviewRaw ?? [];
+
+  const hasPastInterviews = userInterviews.length > 0;
+  const hasUpcomingInterviews = allInterview.length > 0;
 
   return (
     <>
@@ -32,6 +41,10 @@ async function Home() {
 
           <Button asChild className="btn-primary max-sm:w-full">
             <Link href="/interview">Start an Interview</Link>
+          </Button>
+
+          <Button asChild className="btn-primary max-sm:w-full">
+            <Link href="/assessment">Start Assessment</Link>
           </Button>
         </div>
 
@@ -52,7 +65,7 @@ async function Home() {
             userInterviews?.map((interview) => (
               <InterviewCard
                 key={interview.id}
-                userId={user?.id}
+                userId={user.id}
                 interviewId={interview.id}
                 role={interview.role}
                 type={interview.type}
@@ -74,7 +87,7 @@ async function Home() {
             allInterview?.map((interview) => (
               <InterviewCard
                 key={interview.id}
-                userId={user?.id}
+                userId={user.id}
                 interviewId={interview.id}
                 role={interview.role}
                 type={interview.type}
