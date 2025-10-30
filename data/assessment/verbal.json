@@ -1,0 +1,308 @@
+[
+  {
+    "category": "verbal",
+    "question": "Choose the synonym of 'Abate'",
+    "options": ["Increase", "Diminish", "Persist", "Provoke"],
+    "correctAnswer": "Diminish"
+  },
+  {
+    "category": "verbal",
+    "question": "Fill in the blank: She has been working here ____ 2019.",
+    "options": ["since", "for", "from", "by"],
+    "correctAnswer": "since"
+  },
+  {
+    "category": "verbal",
+    "question": "Identify the error: 'He don't like mangoes.'",
+    "options": ["He don't", "like", "mangoes", "No error"],
+    "correctAnswer": "He don't"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the antonym of 'Eloquent'",
+    "options": ["Articulate", "Inarticulate", "Verbose", "Fluent"],
+    "correctAnswer": "Inarticulate"
+  },
+  {
+    "category": "verbal",
+    "question": "Find the correctly spelled word:",
+    "options": ["Occurence", "Occurrence", "Occurence", "Ocurrance"],
+    "correctAnswer": "Occurrence"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the synonym of 'Pernicious'",
+    "options": ["Harmful", "Beneficial", "Harmless", "Innocuous"],
+    "correctAnswer": "Harmful"
+  },
+  {
+    "category": "verbal",
+    "question": "Fill in the blank: Neither the manager nor the employees ____ present.",
+    "options": ["was", "were", "is", "are"],
+    "correctAnswer": "were"
+  },
+  {
+    "category": "verbal",
+    "question": "Identify the error: 'One of the boys are missing.'",
+    "options": ["One of", "the boys", "are missing", "No error"],
+    "correctAnswer": "are missing"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the antonym of 'Obsolete'",
+    "options": ["Outdated", "Modern", "Ancient", "Archaic"],
+    "correctAnswer": "Modern"
+  },
+  {
+    "category": "verbal",
+    "question": "Which word is closest in meaning to 'Ubiquitous'?",
+    "options": ["Rare", "Omnipresent", "Scarce", "Unique"],
+    "correctAnswer": "Omnipresent"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the correct idiom: 'To ____ a storm in a teacup'",
+    "options": ["make", "create", "brew", "stir"],
+    "correctAnswer": "make"
+  },
+  {
+    "category": "verbal",
+    "question": "Fill in the blank: The committee ____ divided in its opinion.",
+    "options": ["is", "are", "were", "have"],
+    "correctAnswer": "is"
+  },
+  {
+    "category": "verbal",
+    "question": "Identify the error: 'She is more smarter than her sister.'",
+    "options": ["She is", "more smarter", "than her", "No error"],
+    "correctAnswer": "more smarter"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the synonym of 'Mitigate'",
+    "options": ["Aggravate", "Alleviate", "Intensify", "Worsen"],
+    "correctAnswer": "Alleviate"
+  },
+  {
+    "category": "verbal",
+    "question": "Which is the correct sentence?",
+    "options": ["He don't know nothing.", "He knows nothing.", "He know nothing.", "He don't knows nothing."],
+    "correctAnswer": "He knows nothing."
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the antonym of 'Ephemeral'",
+    "options": ["Fleeting", "Transient", "Eternal", "Momentary"],
+    "correctAnswer": "Eternal"
+  },
+  {
+    "category": "verbal",
+    "question": "Find the one-word substitution for: 'A person who collects stamps'",
+    "options": ["Philatelist", "Numismatist", "Cartographer", "Ornithologist"],
+    "correctAnswer": "Philatelist"
+  },
+  {
+    "category": "verbal",
+    "question": "Fill in the blank: Hardly had he arrived ____ it started raining.",
+    "options": ["when", "than", "then", "as"],
+    "correctAnswer": "when"
+  },
+  {
+    "category": "verbal",
+    "question": "Identify the error: 'The team are playing well.'",
+    "options": ["The team", "are playing", "well", "No error"],
+    "correctAnswer": "are playing"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the synonym of 'Apathy'",
+    "options": ["Empathy", "Indifference", "Concern", "Interest"],
+    "correctAnswer": "Indifference"
+  },
+  {
+    "category": "verbal",
+    "question": "Which is the correct passive form of: 'They are building a house.'?",
+    "options": ["A house is built by them.", "A house was built by them.", "A house is being built by them.", "A house has been built by them."],
+    "correctAnswer": "A house is being built by them."
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the antonym of 'Benevolent'",
+    "options": ["Kind", "Malevolent", "Generous", "Charitable"],
+    "correctAnswer": "Malevolent"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the correct meaning of the idiom: 'Burn the midnight oil'",
+    "options": ["Waste electricity", "Work late into the night", "Set something on fire", "Stay awake for fun"],
+    "correctAnswer": "Work late into the night"
+  },
+  {
+    "category": "verbal",
+    "question": "Fill in the blank: He is ____ best student in the class.",
+    "options": ["a", "an", "the", "no article"],
+    "correctAnswer": "the"
+  },
+  {
+    "category": "verbal",
+    "question": "Identify the error: 'Your's truly'",
+    "options": ["Your's", "truly", "No error", "Both"],
+    "correctAnswer": "Your's"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the synonym of 'Candid'",
+    "options": ["Deceptive", "Frank", "Secretive", "Cunning"],
+    "correctAnswer": "Frank"
+  },
+  {
+    "category": "verbal",
+    "question": "Which sentence is grammatically correct?",
+    "options": ["He enjoy playing cricket.", "He enjoys playing cricket.", "He enjoying playing cricket.", "He are enjoying cricket."],
+    "correctAnswer": "He enjoys playing cricket."
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the antonym of 'Ascend'",
+    "options": ["Rise", "Climb", "Descend", "Elevate"],
+    "correctAnswer": "Descend"
+  },
+  {
+    "category": "verbal",
+    "question": "Find the one-word substitution for: 'Fear of heights'",
+    "options": ["Claustrophobia", "Acrophobia", "Agoraphobia", "Hydrophobia"],
+    "correctAnswer": "Acrophobia"
+  },
+  {
+    "category": "verbal",
+    "question": "Fill in the blank: ____ you apologize, he won't forgive you.",
+    "options": ["Unless", "If", "Although", "Because"],
+    "correctAnswer": "Unless"
+  },
+  {
+    "category": "verbal",
+    "question": "Identify the error: 'She sing very well.'",
+    "options": ["She", "sing", "very well", "No error"],
+    "correctAnswer": "sing"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the synonym of 'Zeal'",
+    "options": ["Apathy", "Enthusiasm", "Lethargy", "Indifference"],
+    "correctAnswer": "Enthusiasm"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the correct reported speech: He said, 'I am tired.'",
+    "options": ["He said that he was tired.", "He said that he is tired.", "He says he was tired.", "He said he has been tired."],
+    "correctAnswer": "He said that he was tired."
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the antonym of 'Frugal'",
+    "options": ["Thrifty", "Economical", "Lavish", "Prudent"],
+    "correctAnswer": "Lavish"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the meaning of the idiom: 'Kick the bucket'",
+    "options": ["To play football", "To die", "To start a fight", "To waste time"],
+    "correctAnswer": "To die"
+  },
+  {
+    "category": "verbal",
+    "question": "Fill in the blank: The news ____ not true.",
+    "options": ["is", "are", "were", "have"],
+    "correctAnswer": "is"
+  },
+  {
+    "category": "verbal",
+    "question": "Identify the error: 'He has went to the market.'",
+    "options": ["He has", "went", "to the market", "No error"],
+    "correctAnswer": "went"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the synonym of 'Obscure'",
+    "options": ["Clear", "Vague", "Evident", "Transparent"],
+    "correctAnswer": "Vague"
+  },
+  {
+    "category": "verbal",
+    "question": "Which is the correct sentence?",
+    "options": ["The sceneries was beautiful.", "The scenery were beautiful.", "The scenery was beautiful.", "The sceneries were beautiful."],
+    "correctAnswer": "The scenery was beautiful."
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the antonym of 'Hostile'",
+    "options": ["Aggressive", "Friendly", "Belligerent", "Antagonistic"],
+    "correctAnswer": "Friendly"
+  },
+  {
+    "category": "verbal",
+    "question": "Find the one-word substitution for: 'A remedy for all diseases'",
+    "options": ["Panacea", "Antidote", "Cure-all", "Elixir"],
+    "correctAnswer": "Panacea"
+  },
+  {
+    "category": "verbal",
+    "question": "Fill in the blank: No sooner ____ the bell ring than the teacher entered.",
+    "options": ["did", "had", "does", "has"],
+    "correctAnswer": "had"
+  },
+  {
+    "category": "verbal",
+    "question": "Identify the error: 'Each of the students have submitted their assignment.'",
+    "options": ["Each of", "have submitted", "their assignment", "No error"],
+    "correctAnswer": "have submitted"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the synonym of 'Resilient'",
+    "options": ["Fragile", "Brittle", "Buoyant", "Weak"],
+    "correctAnswer": "Buoyant"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the correct passive form: 'Someone stole my pen.'",
+    "options": ["My pen was stolen.", "My pen is stolen.", "My pen has stolen.", "My pen was being stolen."],
+    "correctAnswer": "My pen was stolen."
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the antonym of 'Pristine'",
+    "options": ["Clean", "Pure", "Soiled", "Untouched"],
+    "correctAnswer": "Soiled"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the meaning of the idiom: 'Bite the bullet'",
+    "options": ["To eat quickly", "To face a difficult situation bravely", "To argue", "To give up"],
+    "correctAnswer": "To face a difficult situation bravely"
+  },
+  {
+    "category": "verbal",
+    "question": "Fill in the blank: She ____ to the party if she had been invited.",
+    "options": ["would come", "would have come", "will come", "came"],
+    "correctAnswer": "would have come"
+  },
+  {
+    "category": "verbal",
+    "question": "Identify the error: 'The furnitures are old.'",
+    "options": ["The furnitures", "are", "old", "No error"],
+    "correctAnswer": "The furnitures"
+  },
+  {
+    "category": "verbal",
+    "question": "Choose the synonym of 'Tenacity'",
+    "options": ["Weakness", "Persistence", "Frailty", "Laxity"],
+    "correctAnswer": "Persistence"
+  },
+  {
+    "category": "verbal",
+    "question": "Which is the correct sentence?",
+    "options": ["He can swim good.", "He can swim well.", "He can swims well.", "He can swimming well."],
+    "correctAnswer": "He can swim well."
+  }
+]

@@ -1,0 +1,362 @@
+[
+    {
+      "category": "cn",
+      "question": "Which OSI layer is responsible for routing?",
+      "options": ["Data Link", "Network", "Transport", "Session"],
+      "correctAnswer": "Network"
+    },
+    {
+      "category": "cn",
+      "question": "TCP provides which of the following?",
+      "options": [
+        "Connectionless service",
+        "Best-effort delivery",
+        "Reliable stream",
+        "No flow control"
+      ],
+      "correctAnswer": "Reliable stream"
+    },
+    {
+      "category": "cn",
+      "question": "Which protocol resolves IP to MAC addresses?",
+      "options": ["DNS", "ARP", "DHCP", "ICMP"],
+      "correctAnswer": "ARP"
+    },
+    {
+      "category": "cn",
+      "question": "In a class B IP network, how many bits are reserved for the host portion?",
+      "options": ["8", "14", "16", "24"],
+      "correctAnswer": "16"
+    },
+    {
+      "category": "cn",
+      "question": "Which of the following uses port 443 by default?",
+      "options": ["HTTP", "HTTPS", "FTP", "SMTP"],
+      "correctAnswer": "HTTPS"
+    },
+    {
+      "category": "cn",
+      "question": "What is the maximum segment size (MSS) in TCP if MTU is 1500 bytes and IP + TCP header is 40 bytes?",
+      "options": ["1460", "1480", "1500", "1520"],
+      "correctAnswer": "1460"
+    },
+    {
+      "category": "cn",
+      "question": "Which routing protocol uses bandwidth and delay as metrics?",
+      "options": ["RIP", "OSPF", "EIGRP", "BGP"],
+      "correctAnswer": "EIGRP"
+    },
+    {
+      "category": "cn",
+      "question": "What is the broadcast address for the network 192.168.10.0/28?",
+      "options": ["192.168.10.15", "192.168.10.16", "192.168.10.255", "192.168.10.31"],
+      "correctAnswer": "192.168.10.15"
+    },
+    {
+      "category": "cn",
+      "question": "Which layer of the TCP/IP model corresponds to the OSI Transport layer?",
+      "options": ["Internet", "Transport", "Application", "Network Access"],
+      "correctAnswer": "Transport"
+    },
+    {
+      "category": "cn",
+      "question": "What does CSMA/CD stand for?",
+      "options": [
+        "Carrier Sense Multiple Access/Collision Detection",
+        "Carrier Sense Medium Access/Collision Detection",
+        "Collision Sense Multiple Access/Carrier Detection",
+        "Carrier Sense Multiple Access/Carrier Detection"
+      ],
+      "correctAnswer": "Carrier Sense Multiple Access/Collision Detection"
+    },
+    {
+      "category": "cn",
+      "question": "In IPv6, what is the size of the address in bits?",
+      "options": ["32", "64", "128", "256"],
+      "correctAnswer": "128"
+    },
+    {
+      "category": "cn",
+      "question": "Which protocol is used to automatically assign IP addresses?",
+      "options": ["ARP", "DNS", "DHCP", "ICMP"],
+      "correctAnswer": "DHCP"
+    },
+    {
+      "category": "cn",
+      "question": "What is the purpose of the TTL field in an IP packet?",
+      "options": [
+        "To prevent routing loops",
+        "To encrypt the packet",
+        "To fragment the packet",
+        "To prioritize traffic"
+      ],
+      "correctAnswer": "To prevent routing loops"
+    },
+    {
+      "category": "cn",
+      "question": "Which of the following is a link-state routing protocol?",
+      "options": ["RIP", "EIGRP", "OSPF", "BGP"],
+      "correctAnswer": "OSPF"
+    },
+    {
+      "category": "cn",
+      "question": "What is the subnet mask for a /27 network?",
+      "options": ["255.255.255.192", "255.255.255.224", "255.255.255.240", "255.255.255.248"],
+      "correctAnswer": "255.255.255.224"
+    },
+    {
+      "category": "cn",
+      "question": "In NAT, what does PAT stand for?",
+      "options": [
+        "Port Address Translation",
+        "Packet Address Translation",
+        "Protocol Address Translation",
+        "Private Address Translation"
+      ],
+      "correctAnswer": "Port Address Translation"
+    },
+    {
+      "category": "cn",
+      "question": "Which TCP flag is used to urgently stop data transmission?",
+      "options": ["SYN", "FIN", "RST", "URG"],
+      "correctAnswer": "URG"
+    },
+    {
+      "category": "cn",
+      "question": "What is the maximum number of hosts in a /29 subnet?",
+      "options": ["6", "8", "14", "30"],
+      "correctAnswer": "6"
+    },
+    {
+      "category": "cn",
+      "question": "Which protocol operates at the Network layer and is used for error reporting?",
+      "options": ["TCP", "UDP", "ICMP", "IGMP"],
+      "correctAnswer": "ICMP"
+    },
+    {
+      "category": "cn",
+      "question": "What is the default administrative distance of a static route?",
+      "options": ["0", "1", "5", "110"],
+      "correctAnswer": "1"
+    },
+    {
+      "category": "cn",
+      "question": "In VLANs, what is the purpose of a trunk port?",
+      "options": [
+        "To connect end devices",
+        "To carry traffic for multiple VLANs",
+        "To block traffic",
+        "To assign IP addresses"
+      ],
+      "correctAnswer": "To carry traffic for multiple VLANs"
+    },
+    {
+      "category": "cn",
+      "question": "Which of the following is a valid anycast address in IPv6?",
+      "options": ["ff02::1", "2001::1", "fe80::1", "It is not a type of address"],
+      "correctAnswer": "It is not a type of address"
+    },
+    {
+      "category": "cn",
+      "question": "What is the size of the TCP header without options?",
+      "options": ["16 bytes", "20 bytes", "24 bytes", "32 bytes"],
+      "correctAnswer": "20 bytes"
+    },
+    {
+      "category": "cn",
+      "question": "Which command displays the routing table on a Cisco router?",
+      "options": ["show ip route", "show route", "display route", "ip route show"],
+      "correctAnswer": "show ip route"
+    },
+    {
+      "category": "cn",
+      "question": "What is the primary difference between TCP and UDP?",
+      "options": [
+        "TCP is connectionless, UDP is connection-oriented",
+        "TCP provides reliability, UDP does not",
+        "UDP uses flow control, TCP does not",
+        "TCP is faster than UDP"
+      ],
+      "correctAnswer": "TCP provides reliability, UDP does not"
+    },
+    {
+      "category": "cn",
+      "question": "In OSPF, what is the default cost metric for a 10 Mbps link?",
+      "options": ["1", "10", "100", "1000"],
+      "correctAnswer": "10"
+    },
+    {
+      "category": "cn",
+      "question": "Which protocol is used for secure remote login?",
+      "options": ["Telnet", "SSH", "FTP", "SNMP"],
+      "correctAnswer": "SSH"
+    },
+    {
+      "category": "cn",
+      "question": "What is the range of private IP addresses in Class C?",
+      "options": [
+        "10.0.0.0 - 10.255.255.255",
+        "172.16.0.0 - 172.31.255.255",
+        "192.168.0.0 - 192.168.255.255",
+        "169.254.0.0 - 169.254.255.255"
+      ],
+      "correctAnswer": "192.168.0.0 - 192.168.255.255"
+    },
+    {
+      "category": "cn",
+      "question": "Which layer is responsible for logical addressing?",
+      "options": ["Physical", "Data Link", "Network", "Transport"],
+      "correctAnswer": "Network"
+    },
+    {
+      "category": "cn",
+      "question": "What is the purpose of the ARP cache?",
+      "options": [
+        "To store DNS entries",
+        "To map IP to MAC addresses",
+        "To store routing tables",
+        "To cache web pages"
+      ],
+      "correctAnswer": "To map IP to MAC addresses"
+    },
+    {
+      "category": "cn",
+      "question": "In BGP, which attribute is used to prefer the path with the lowest router ID?",
+      "options": ["Local Preference", "MED", "Router ID", "AS Path"],
+      "correctAnswer": "Router ID"
+    },
+    {
+      "category": "cn",
+      "question": "What is the maximum transmission unit (MTU) for standard Ethernet?",
+      "options": ["576 bytes", "1500 bytes", "4096 bytes", "9216 bytes"],
+      "correctAnswer": "1500 bytes"
+    },
+    {
+      "category": "cn",
+      "question": "Which of the following is a distance vector routing protocol?",
+      "options": ["OSPF", "IS-IS", "RIP", "EIGRP (hybrid)"],
+      "correctAnswer": "RIP"
+    },
+    {
+      "category": "cn",
+      "question": "What does the command 'ip nat inside source list 1 pool NATPOOL overload' configure?",
+      "options": [
+        "Static NAT",
+        "Dynamic NAT",
+        "PAT (NAT Overload)",
+        "NAT exemption"
+      ],
+      "correctAnswer": "PAT (NAT Overload)"
+    },
+    {
+      "category": "cn",
+      "question": "Which port is used by DNS for queries?",
+      "options": ["53", "67", "80", "443"],
+      "correctAnswer": "53"
+    },
+    {
+      "category": "cn",
+      "question": "What is the loopback address in IPv6?",
+      "options": ["::1", "fe80::1", "ff02::1", "2000::1"],
+      "correctAnswer": "::1"
+    },
+    {
+      "category": "cn",
+      "question": "Which protocol encapsulates IP packets in Layer 2 frames for VPNs?",
+      "options": ["IPsec", "GRE", "L2TP", "PPTP"],
+      "correctAnswer": "GRE"
+    },
+    {
+      "category": "cn",
+      "question": "What is the default lease time for DHCP?",
+      "options": ["1 day", "3 days", "7 days", "No default"],
+      "correctAnswer": "No default"
+    },
+    {
+      "category": "cn",
+      "question": "Which of the following is NOT a valid IPv4 private address range?",
+      "options": [
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.0/16",
+        "100.64.0.0/10"
+      ],
+      "correctAnswer": "100.64.0.0/10"
+    },
+    {
+      "category": "cn",
+      "question": "In a TCP 3-way handshake, what is the sequence of flags?",
+      "options": ["SYN, ACK, SYN-ACK", "SYN, SYN-ACK, ACK", "ACK, SYN, FIN", "FIN, ACK, RST"],
+      "correctAnswer": "SYN, SYN-ACK, ACK"
+    },
+    {
+      "category": "cn",
+      "question": "What is the administrative distance of OSPF?",
+      "options": ["90", "100", "110", "120"],
+      "correctAnswer": "110"
+    },
+    {
+      "category": "cn",
+      "question": "Which protocol is used to synchronize time across devices?",
+      "options": ["NTP", "SNMP", "SYSLOG", "FTP"],
+      "correctAnswer": "NTP"
+    },
+    {
+      "category": "cn",
+      "question": "What is the size of an IPv4 header without options?",
+      "options": ["16 bytes", "20 bytes", "24 bytes", "32 bytes"],
+      "correctAnswer": "20 bytes"
+    },
+    {
+      "category": "cn",
+      "question": "Which VLAN is the native VLAN by default on Cisco switches?",
+      "options": ["VLAN 1", "VLAN 0", "VLAN 1002", "VLAN 4094"],
+      "correctAnswer": "VLAN 1"
+    },
+    {
+      "category": "cn",
+      "question": "What is the purpose of the Destination Unreachable message in ICMP?",
+      "options": [
+        "To indicate packet loss",
+        "To inform the sender that the destination is unreachable",
+        "To redirect traffic",
+        "To echo request"
+      ],
+      "correctAnswer": "To inform the sender that the destination is unreachable"
+    },
+    {
+      "category": "cn",
+      "question": "Which of the following uses UDP port 500?",
+      "options": ["IPsec IKE", "SSL VPN", "L2TP", "PPTP"],
+      "correctAnswer": "IPsec IKE"
+    },
+    {
+      "category": "cn",
+      "question": "What is the maximum hop count in RIP?",
+      "options": ["15", "16", "255", "No limit"],
+      "correctAnswer": "15"
+    },
+    {
+      "category": "cn",
+      "question": "In subnetting, how many subnets are created with a /26 mask in a /24 network?",
+      "options": ["2", "4", "6", "8"],
+      "correctAnswer": "4"
+    },
+    {
+      "category": "cn",
+      "question": "Which protocol is used for multicast group management?",
+      "options": ["IGMP", "PIM", "DVMRP", "MOSPF"],
+      "correctAnswer": "IGMP"
+    },
+    {
+      "category": "cn",
+      "question": "What is the primary function of a Layer 3 switch?",
+      "options": [
+        "To switch frames at Layer 2",
+        "To route packets between VLANs",
+        "To encrypt traffic",
+        "To filter based on MAC"
+      ],
+      "correctAnswer": "To route packets between VLANs"
+    }
+  ]

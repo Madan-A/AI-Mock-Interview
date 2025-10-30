@@ -1,0 +1,322 @@
+[
+  {
+    "category": "dsa",
+    "question": "Which data structure gives O(1) average lookup time?",
+    "options": ["Array", "Linked List", "Hash Table", "Binary Search Tree"],
+    "correctAnswer": "Hash Table"
+  },
+  {
+    "category": "dsa",
+    "question": "In-order traversal of a BST yields:",
+    "options": [
+      "Descending order",
+      "Unsorted order",
+      "Level order",
+      "Ascending order"
+    ],
+    "correctAnswer": "Ascending order"
+  },
+  {
+    "category": "dsa",
+    "question": "Which algorithm uses divide and conquer?",
+    "options": ["Bubble Sort", "Insertion Sort", "Quick Sort", "Counting Sort"],
+    "correctAnswer": "Quick Sort"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the time complexity of inserting an element at the beginning of a singly linked list?",
+    "options": ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+    "correctAnswer": "O(1)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which of the following is NOT a stable sorting algorithm?",
+    "options": ["Merge Sort", "Insertion Sort", "Quick Sort", "Bubble Sort"],
+    "correctAnswer": "Quick Sort"
+  },
+  {
+    "category": "dsa",
+    "question": "In a binary heap, the parent of a node at index i is at index:",
+    "options": ["i/2", "(i-1)/2", "2i+1", "2i"],
+    "correctAnswer": "(i-1)/2"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the worst-case time complexity of binary search on a sorted array?",
+    "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+    "correctAnswer": "O(log n)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which data structure is used in BFS traversal of a graph?",
+    "options": ["Stack", "Queue", "Heap", "Hash Set"],
+    "correctAnswer": "Queue"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the space complexity of the iterative Depth-First Search (DFS)?",
+    "options": ["O(1)", "O(log n)", "O(h)", "O(n)"],
+    "correctAnswer": "O(h)"
+  },
+  {
+    "category": "dsa",
+    "question": "In a balanced binary search tree with n nodes, the height is:",
+    "options": ["O(n)", "O(log n)", "O(sqrt(n))", "O(n^2)"],
+    "correctAnswer": "O(log n)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which sorting algorithm has the best average-case time complexity?",
+    "options": ["Bubble Sort", "Selection Sort", "Quick Sort", "Insertion Sort"],
+    "correctAnswer": "Quick Sort"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the time complexity of deleting the maximum element from a max-heap?",
+    "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+    "correctAnswer": "O(log n)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which of the following is a self-balancing binary search tree?",
+    "options": ["Binary Tree", "BST", "AVL Tree", "Heap"],
+    "correctAnswer": "AVL Tree"
+  },
+  {
+    "category": "dsa",
+    "question": "In Dijkstra's algorithm, which data structure is typically used for the priority queue?",
+    "options": ["Array", "Linked List", "Binary Min-Heap", "Stack"],
+    "correctAnswer": "Binary Min-Heap"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the time complexity of accessing an element in a hash table with good hash function?",
+    "options": ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+    "correctAnswer": "O(1)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which traversal visits nodes in the order: root, left, right?",
+    "options": ["In-order", "Pre-order", "Post-order", "Level-order"],
+    "correctAnswer": "Pre-order"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the maximum number of edges in an undirected graph with n vertices?",
+    "options": ["n", "n-1", "n(n-1)/2", "n^2"],
+    "correctAnswer": "n(n-1)/2"
+  },
+  {
+    "category": "dsa",
+    "question": "Which algorithm is used to detect a cycle in a directed graph?",
+    "options": ["BFS", "DFS", "Dijkstra", "Prim"],
+    "correctAnswer": "DFS"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the space complexity of merge sort?",
+    "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+    "correctAnswer": "O(n)"
+  },
+  {
+    "category": "dsa",
+    "question": "In a min-heap, the smallest element is always at:",
+    "options": ["Leaf", "Root", "Leftmost node", "Rightmost node"],
+    "correctAnswer": "Root"
+  },
+  {
+    "category": "dsa",
+    "question": "Which of the following uses dynamic programming?",
+    "options": ["Binary Search", "Quick Sort", "Knapsack Problem", "DFS"],
+    "correctAnswer": "Knapsack Problem"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the time complexity of building a binary heap from n elements?",
+    "options": ["O(n)", "O(n log n)", "O(log n)", "O(n^2)"],
+    "correctAnswer": "O(n)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which data structure is used for implementing recursion?",
+    "options": ["Queue", "Stack", "Heap", "Hash Table"],
+    "correctAnswer": "Stack"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the average number of comparisons in a successful binary search?",
+    "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+    "correctAnswer": "O(log n)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which sorting algorithm is in-place but not stable?",
+    "options": ["Merge Sort", "Quick Sort", "Insertion Sort", "Heap Sort"],
+    "correctAnswer": "Quick Sort"
+  },
+  {
+    "category": "dsa",
+    "question": "In a complete binary tree of height h, the maximum number of nodes is:",
+    "options": ["2^h - 1", "2^(h+1) - 1", "2^h", "h^2"],
+    "correctAnswer": "2^(h+1) - 1"
+  },
+  {
+    "category": "dsa",
+    "question": "Which of the following is true for a red-black tree?",
+    "options": [
+      "Root is red",
+      "Every path from root to leaf has same number of black nodes",
+      "All leaves are red",
+      "No two red nodes are adjacent"
+    ],
+    "correctAnswer": "Every path from root to leaf has same number of black nodes"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the time complexity of Kruskal's algorithm with Union-Find?",
+    "options": ["O(E)", "O(E log V)", "O(V^2)", "O(E + V)"],
+    "correctAnswer": "O(E log V)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which data structure is best for implementing LRU Cache?",
+    "options": ["Array + HashMap", "Queue + HashMap", "HashMap + Doubly Linked List", "Stack + HashMap"],
+    "correctAnswer": "HashMap + Doubly Linked List"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the height of a balanced binary tree with n nodes?",
+    "options": ["O(n)", "O(log n)", "O(sqrt(n))", "O(n log n)"],
+    "correctAnswer": "O(log n)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which of the following has the worst time complexity for search?",
+    "options": ["BST", "Hash Table", "Balanced BST", "Array"],
+    "correctAnswer": "Array"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the time complexity of Floyd-Warshall algorithm?",
+    "options": ["O(V)", "O(V^2)", "O(V^3)", "O(E log V)"],
+    "correctAnswer": "O(V^3)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which traversal uses a queue?",
+    "options": ["In-order", "Pre-order", "Post-order", "Level-order"],
+    "correctAnswer": "Level-order"
+  },
+  {
+    "category": "dsa",
+    "question": "In a hash table, collision is resolved using:",
+    "options": ["Linear Probing", "Binary Search", "Rotation", "Recursion"],
+    "correctAnswer": "Linear Probing"
+  },
+  {
+    "category": "dsa",
+    "question": "Which algorithm is used to find the strongly connected components in a graph?",
+    "options": ["Dijkstra", "Bellman-Ford", "Kosaraju", "Prim"],
+    "correctAnswer": "Kosaraju"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the space complexity of DFS on a graph with V vertices and E edges?",
+    "options": ["O(V)", "O(E)", "O(V + E)", "O(1)"],
+    "correctAnswer": "O(V)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which of the following is a greedy algorithm?",
+    "options": ["Merge Sort", "Dynamic Programming", "Kruskal's MST", "Floyd-Warshall"],
+    "correctAnswer": "Kruskal's MST"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the time complexity of enqueue and dequeue in a queue using two stacks?",
+    "options": ["O(1) amortized", "O(n)", "O(log n)", "O(1)"],
+    "correctAnswer": "O(1) amortized"
+  },
+  {
+    "category": "dsa",
+    "question": "In a binary search tree, the successor of a node is found by:",
+    "options": [
+      "Going to leftmost child",
+      "Going to rightmost child",
+      "Going up until a left turn",
+      "Going to parent"
+    ],
+    "correctAnswer": "Going to rightmost child"
+  },
+  {
+    "category": "dsa",
+    "question": "Which data structure is used in topological sorting?",
+    "options": ["Stack", "Queue", "Heap", "Tree"],
+    "correctAnswer": "Stack"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the time complexity of heap sort?",
+    "options": ["O(n)", "O(n log n)", "O(n^2)", "O(log n)"],
+    "correctAnswer": "O(n log n)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which of the following is true for a skip list?",
+    "options": [
+      "O(n) search",
+      "O(log n) average search",
+      "Uses only one level",
+      "Deterministic structure"
+    ],
+    "correctAnswer": "O(log n) average search"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the maximum degree of a node in a B-Tree of order m?",
+    "options": ["m-1", "m", "2m-1", "2m"],
+    "correctAnswer": "m"
+  },
+  {
+    "category": "dsa",
+    "question": "Which algorithm solves the all-pairs shortest path problem efficiently for dense graphs?",
+    "options": ["Dijkstra", "Bellman-Ford", "Floyd-Warshall", "Johnson"],
+    "correctAnswer": "Floyd-Warshall"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the time complexity of inserting into a balanced BST like AVL?",
+    "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+    "correctAnswer": "O(log n)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which data structure is used in the implementation of Union-Find with path compression?",
+    "options": ["Array", "Linked List", "Tree", "Graph"],
+    "correctAnswer": "Array"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the average case time complexity of radix sort?",
+    "options": ["O(n)", "O(n log n)", "O(nk)", "O(n^2)"],
+    "correctAnswer": "O(nk)"
+  },
+  {
+    "category": "dsa",
+    "question": "Which of the following is a disadvantage of arrays?",
+    "options": ["Random access", "Fixed size", "Cache friendly", "Fast lookup"],
+    "correctAnswer": "Fixed size"
+  },
+  {
+    "category": "dsa",
+    "question": "In a trie, what is stored at the leaf nodes?",
+    "options": ["Prefix", "Full word", "Character", "Frequency"],
+    "correctAnswer": "Full word"
+  },
+  {
+    "category": "dsa",
+    "question": "What is the time complexity of Bellman-Ford algorithm?",
+    "options": ["O(V)", "O(E)", "O(VE)", "O(E log V)"],
+    "correctAnswer": "O(VE)"
+  }
+]
