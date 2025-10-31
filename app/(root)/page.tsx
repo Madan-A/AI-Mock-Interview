@@ -3,7 +3,6 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import InterviewCard from "@/components/InterviewCard";
-import CursorGlow from "@/components/CursorGlow";
 
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import { redirect } from "next/navigation";
@@ -37,8 +36,7 @@ async function Home() {
 
   return (
     <>
-      <CursorGlow />
-      <section className="card-cta relative cursor-glow-container">
+      <section className="card-cta relative">
         <div className="flex flex-col gap-6 max-w-lg z-10 relative">
           <h2>Get Interview-Ready with AI-Powered Practice & Feedback</h2>
           <p className="text-lg">

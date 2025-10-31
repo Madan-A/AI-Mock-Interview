@@ -24,12 +24,16 @@ export default async function AssessmentPage({
       ? "technical"
       : sectionParam === "aptitude"
       ? "aptitude"
+      : sectionParam === "coding"
+      ? "coding"
       : "";
 
   return (
     <div className="container mx-auto max-w-3xl py-6">
       {section ? (
-        <AssessmentClient section={section as "aptitude" | "technical"} />
+        <AssessmentClient
+          section={section as "aptitude" | "technical" | "coding"}
+        />
       ) : (
         <AssessmentSectionPickerClient />
       )}

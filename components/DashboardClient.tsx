@@ -53,104 +53,95 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
   const weeklyData = useMemo(() => {
     const weeks = ["Week 1", "Week 2", "Week 3", "Week 4"];
 
-    // Get all interviews and assessments with fallback
-    const allInterviews = stats.interviews || [];
+    // Get assessments only
     const allAssessments = stats.assessments || [];
 
-    console.log("=== GRAPH DEBUG ===");
-    console.log("All interviews:", allInterviews);
+    console.log("=== ASSESSMENT GRAPH DEBUG ===");
     console.log("All assessments:", allAssessments);
     console.log("Selected month:", selectedMonth, "Year:", selectedYear);
 
-    // If we have data but nothing in selected month, distribute across weeks
-    const hasData = allInterviews.length > 0 || allAssessments.length > 0;
-
-    if (hasData) {
-      // Group by week for the selected month
-      const startOfMonth = new Date(selectedYear, selectedMonth, 1).getTime();
-      const endOfMonth = new Date(
-        selectedYear,
-        selectedMonth + 1,
-        0,
-        23,
-        59,
-        59,
-        999
-      ).getTime();
-
-      console.log("Month range:", {
-        start: new Date(startOfMonth).toISOString(),
-        end: new Date(endOfMonth).toISOString(),
-      });
-
-      const data = weeks.map((week, index) => {
-        const weekStart = startOfMonth + index * 7 * 24 * 60 * 60 * 1000;
-        const weekEnd = Math.min(
-          weekStart + 7 * 24 * 60 * 60 * 1000 - 1,
-          endOfMonth
-        );
-
-        console.log(`${week} range:`, {
-          start: new Date(weekStart).toISOString(),
-          end: new Date(weekEnd).toISOString(),
-        });
-
-        const interviewsThisWeek = allInterviews.filter((interview) => {
-          const completedAt = interview.completedAt;
-          const inRange = completedAt >= weekStart && completedAt <= weekEnd;
-          if (inRange) {
-            console.log(
-              `Interview in ${week}:`,
-              new Date(completedAt).toISOString()
-            );
-          }
-          return inRange;
-        }).length;
-
-        const assessmentsThisWeek = allAssessments.filter((assessment) => {
-          const completedAt = assessment.completedAt;
-          const inRange = completedAt >= weekStart && completedAt <= weekEnd;
-          if (inRange) {
-            console.log(
-              `Assessment in ${week}:`,
-              new Date(completedAt).toISOString()
-            );
-          }
-          return inRange;
-        }).length;
-
-        return {
-          week,
-          interviews: interviewsThisWeek,
-          assessments: assessmentsThisWeek,
-        };
-      });
-
-      console.log("Final weekly data:", data);
-
-      // Check if selected month has any data
-      const totalInMonth = data.reduce(
-        (sum, w) => sum + w.interviews + w.assessments,
-        0
-      );
-
-      if (totalInMonth === 0) {
-        console.log("⚠️ No data found in selected month");
-      } else {
-        console.log(`✓ Found ${totalInMonth} items in selected month`);
-      }
-
-      return data;
+    if (allAssessments.length === 0) {
+      console.log("❌ No assessments at all");
+      return weeks.map((week) => ({
+        week,
+        interviews: 0,
+        assessments: 0,
+      }));
     }
 
-    // No data at all
-    console.log("No data available");
-    return weeks.map((week) => ({
-      week,
-      interviews: 0,
-      assessments: 0,
-    }));
-  }, [selectedMonth, selectedYear, stats]);
+    // Filter assessments for the selected month/year by comparing Date values directly
+    const assessmentsInMonth = allAssessments.filter((assessment) => {
+      const date = new Date(assessment.completedAt);
+      const assessmentMonth = date.getMonth();
+      const assessmentYear = date.getFullYear();
+      const matches =
+        assessmentMonth === selectedMonth && assessmentYear === selectedYear;
+
+      if (matches) {
+        console.log(`✓ Assessment in selected month:`, {
+          section: assessment.section,
+          date: date.toLocaleDateString(),
+          completedAt: assessment.completedAt,
+        });
+      }
+
+      return matches;
+    });
+
+    console.log(
+      `Found ${assessmentsInMonth.length} assessments in ${
+        [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ][selectedMonth]
+      } ${selectedYear}`
+    );
+
+    // Group assessments by week number (based on day of month)
+    const data = weeks.map((week, weekIndex) => {
+      const assessmentsThisWeek = assessmentsInMonth.filter((assessment) => {
+        const date = new Date(assessment.completedAt);
+        const dayOfMonth = date.getDate();
+
+        // Determine which week this day falls into
+        // Week 1: days 1-7, Week 2: days 8-14, Week 3: days 15-21, Week 4: days 22-end
+        const assessmentWeekIndex = Math.min(
+          Math.floor((dayOfMonth - 1) / 7),
+          3
+        );
+
+        const inWeek = assessmentWeekIndex === weekIndex;
+
+        if (inWeek) {
+          console.log(
+            `  ✓ ${week}: ${assessment.section} on day ${dayOfMonth}`
+          );
+        }
+
+        return inWeek;
+      }).length;
+
+      return {
+        week,
+        interviews: 0,
+        assessments: assessmentsThisWeek,
+      };
+    });
+
+    console.log("Final weekly data:", data);
+
+    return data;
+  }, [selectedMonth, selectedYear, stats.assessments]);
 
   const handleSaveProfile = async () => {
     setIsLoading(true);
@@ -183,12 +174,14 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
   return (
     <div className="space-y-8">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="rounded-lg border bg-card p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-muted-foreground">Total Tests</p>
-              <h3 className="text-3xl font-bold mt-2">{stats.totalTests}</h3>
+              <p className="text-sm text-muted-foreground">Total Assessments</p>
+              <h3 className="text-3xl font-bold mt-2">
+                {stats.assessmentsCount}
+              </h3>
             </div>
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
               <svg
@@ -202,58 +195,6 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
                   strokeLinejoin="round"
                   strokeWidth={2}
                   d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-lg border bg-card p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-muted-foreground">Interviews Taken</p>
-              <h3 className="text-3xl font-bold mt-2">
-                {stats.interviewsCount}
-              </h3>
-            </div>
-            <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center">
-              <svg
-                className="w-6 h-6 text-green-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-lg border bg-card p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-muted-foreground">Assessments</p>
-              <h3 className="text-3xl font-bold mt-2">
-                {stats.assessmentsCount}
-              </h3>
-            </div>
-            <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center">
-              <svg
-                className="w-6 h-6 text-blue-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
                 />
               </svg>
             </div>
@@ -363,37 +304,19 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
 
       {/* Recent Activity */}
       <div className="rounded-lg border bg-card p-6">
-        <h2 className="text-2xl font-semibold mb-6">Recent Activity</h2>
-        {stats.recentActivity.length > 0 ? (
+        <h2 className="text-2xl font-semibold mb-6">Recent Assessments</h2>
+        {stats.recentActivity.filter((a) => a.type === "assessment").length >
+        0 ? (
           <div className="space-y-4">
-            {stats.recentActivity.map((activity, index) => (
-              <div
-                key={activity.id || index}
-                className="flex items-center justify-between p-4 rounded-md bg-muted/50"
-              >
-                <div className="flex items-center gap-3">
-                  <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                      activity.type === "interview"
-                        ? "bg-green-500/10"
-                        : "bg-blue-500/10"
-                    }`}
-                  >
-                    {activity.type === "interview" ? (
-                      <svg
-                        className="w-5 h-5 text-green-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                        />
-                      </svg>
-                    ) : (
+            {stats.recentActivity
+              .filter((activity) => activity.type === "assessment")
+              .map((activity, index) => (
+                <div
+                  key={activity.id || index}
+                  className="flex items-center justify-between p-4 rounded-md bg-muted/50"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center bg-blue-500/10">
                       <svg
                         className="w-5 h-5 text-blue-500"
                         fill="none"
@@ -407,29 +330,24 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
                           d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
                         />
                       </svg>
-                    )}
+                    </div>
+                    <div>
+                      <p className="font-medium">
+                        {activity.section || "Assessment"}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {new Date(activity.completedAt).toLocaleDateString()}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium">
-                      {activity.type === "interview"
-                        ? `Interview - ${activity.role || "Role"}`
-                        : `Assessment - ${activity.section || "Section"}`}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {new Date(activity.completedAt).toLocaleDateString()}
-                    </p>
-                  </div>
-                </div>
-                {activity.type === "assessment" && (
                   <div className="text-sm font-semibold">
                     {Math.round((activity.score / activity.total) * 100)}%
                   </div>
-                )}
-              </div>
-            ))}
+                </div>
+              ))}
           </div>
         ) : (
-          <p className="text-muted-foreground">No recent activity</p>
+          <p className="text-muted-foreground">No assessments completed yet</p>
         )}
       </div>
 
@@ -482,68 +400,53 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
         </div>
 
         {/* Assessments Chart */}
-        <div className="mb-8">
+        <div key={`chart-${selectedMonth}-${selectedYear}`}>
           <h3 className="text-lg font-medium mb-4">
-            Assessments Taken (Weekly)
+            Assessments Taken (Weekly) -{" "}
+            {
+              [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
+              ][selectedMonth]
+            }{" "}
+            {selectedYear}
           </h3>
-          {weeklyData.some((w) => w.assessments > 0) ? (
-            <ResponsiveContainer width="100%" height={250}>
-              <LineChart data={weeklyData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="week" />
-                <YAxis allowDecimals={false} domain={[0, "auto"]} />
-                <Tooltip />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="assessments"
-                  stroke="#3b82f6"
-                  strokeWidth={2}
-                  name="Assessments"
-                  dot={{ r: 4 }}
-                  activeDot={{ r: 6 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          ) : (
-            <div className="h-[250px] flex items-center justify-center border rounded-md bg-muted/20">
-              <p className="text-muted-foreground">
-                No assessment data for the selected period
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* Interviews Chart */}
-        <div>
-          <h3 className="text-lg font-medium mb-4">
-            Interviews Taken (Weekly)
-          </h3>
-          {weeklyData.some((w) => w.interviews > 0) ? (
-            <ResponsiveContainer width="100%" height={250}>
-              <LineChart data={weeklyData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="week" />
-                <YAxis allowDecimals={false} domain={[0, "auto"]} />
-                <Tooltip />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="interviews"
-                  stroke="#22c55e"
-                  strokeWidth={2}
-                  name="Interviews"
-                  dot={{ r: 4 }}
-                  activeDot={{ r: 6 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          ) : (
-            <div className="h-[250px] flex items-center justify-center border rounded-md bg-muted/20">
-              <p className="text-muted-foreground">
-                No interview data for the selected period
-              </p>
-            </div>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart
+              data={weeklyData}
+              key={`line-${selectedMonth}-${selectedYear}`}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="week" />
+              <YAxis allowDecimals={false} domain={[0, "dataMax + 1"]} />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="assessments"
+                stroke="#3b82f6"
+                strokeWidth={2}
+                name="Assessments"
+                dot={{ r: 4 }}
+                activeDot={{ r: 6 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+          {!weeklyData.some((w) => w.assessments > 0) && (
+            <p className="text-center text-sm text-muted-foreground mt-4">
+              No assessment data for the selected period. Complete assessments
+              to see your progress!
+            </p>
           )}
         </div>
       </div>

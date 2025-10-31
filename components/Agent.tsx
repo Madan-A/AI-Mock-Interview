@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
@@ -36,11 +36,49 @@ const Agent = ({
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [lastMessage, setLastMessage] = useState<string>("");
   const [isInitializing, setIsInitializing] = useState(true);
+  const [isVideoOn, setIsVideoOn] = useState(true);
+  const [isAudioOn, setIsAudioOn] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+
+  // Setup media with current video/audio settings
+  const setupMedia = async (videoEnabled: boolean, audioEnabled: boolean) => {
+    try {
+      // Stop existing tracks first
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop());
+      }
+
+      // Get new stream with updated constraints
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: videoEnabled,
+        audio: audioEnabled,
+      });
+
+      streamRef.current = stream;
+
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+    } catch (err) {
+      console.error("Error accessing media:", err);
+    }
+  };
 
   useEffect(() => {
-    // Simulate initialization
+    // Simulate initialization and setup user media
     const timer = setTimeout(() => setIsInitializing(false), 500);
-    return () => clearTimeout(timer);
+
+    // Initialize with both video and audio on
+    setupMedia(true, true);
+
+    return () => {
+      clearTimeout(timer);
+      // Cleanup media stream
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop());
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -248,46 +286,214 @@ const Agent = ({
     vapi.stop();
   };
 
+  const toggleVideo = async () => {
+    const newVideoState = !isVideoOn;
+    setIsVideoOn(newVideoState);
+    await setupMedia(newVideoState, isAudioOn);
+  };
+
+  const toggleAudio = async () => {
+    const newAudioState = !isAudioOn;
+    setIsAudioOn(newAudioState);
+    await setupMedia(isVideoOn, newAudioState);
+  };
+
   // Show loader while initializing
   if (isInitializing) {
     return <Loader size="lg" text="Initializing interview..." />;
   }
 
   return (
-    <>
-      <div className="call-view">
-        {/* AI Interviewer Card */}
-        <div className="card-interviewer">
-          <div className="avatar">
-            <Image
-              src="/ai-avatar.png"
-              alt="profile-image"
-              width={65}
-              height={54}
-              className="object-cover"
-            />
-            {isSpeaking && <span className="animate-speak" />}
+    <div className="flex flex-col items-center w-full gap-6 sm:gap-8">
+      <div className="interview-layout">
+        {/* AI Interviewer Card - Full Face Person */}
+        <div className="interviewer-card">
+          <div className="video-frame interviewer-frame">
+            <div className="interviewer-avatar">
+              {/* Professional robot interviewer image */}
+              <div className="avatar-container">
+                <Image
+                  src="/robot.png"
+                  alt="AI Interviewer Robot"
+                  width={400}
+                  height={400}
+                  className="avatar-img"
+                  priority
+                />
+                {/* Speaking animation overlay */}
+                {isSpeaking && (
+                  <>
+                    <div className="speak-ring ring-1" />
+                    <div className="speak-ring ring-2" />
+                    <div className="speak-ring ring-3" />
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* Interviewer info bar */}
+            <div className="video-info-bar top">
+              <div className="info-content">
+                <div
+                  className={cn(
+                    "status-dot",
+                    callStatus === "ACTIVE" && "status-active",
+                    isSpeaking && "status-speaking"
+                  )}
+                />
+                <span className="info-label">AI Interviewer</span>
+              </div>
+              {isSpeaking && (
+                <div className="speaking-badge">
+                  <span className="dot" />
+                  <span className="dot" />
+                  <span className="dot" />
+                </div>
+              )}
+            </div>
           </div>
-          <h3>AI Interviewer</h3>
         </div>
 
-        {/* User Profile Card */}
-        <div className="card-border">
-          <div className="card-content">
-            <Image
-              src="/user-avatar.png"
-              alt="profile-image"
-              width={539}
-              height={539}
-              className="rounded-full object-cover size-[120px]"
-            />
-            <h3>{userName}</h3>
+        {/* User Video Card with Controls */}
+        <div className="user-card">
+          <div className="video-frame user-frame">
+            {isVideoOn ? (
+              <video
+                ref={videoRef}
+                autoPlay
+                playsInline
+                muted
+                className="user-video"
+              />
+            ) : (
+              <div className="video-off">
+                <div className="avatar-placeholder">
+                  <svg
+                    className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 text-primary-100/60"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <p className="off-text">Camera Off</p>
+                </div>
+              </div>
+            )}
+
+            {/* User info bar */}
+            <div className="video-info-bar bottom">
+              <div className="info-content">
+                <svg
+                  className="user-icon-svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="info-label">{userName}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Video/Audio Controls Below Video */}
+          <div className="media-controls-below">
+            <button
+              onClick={toggleVideo}
+              className={cn("media-btn", !isVideoOn && "media-btn-off")}
+              title={isVideoOn ? "Turn off camera" : "Turn on camera"}
+            >
+              {isVideoOn ? (
+                <svg
+                  className="btn-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="btn-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              )}
+            </button>
+
+            <button
+              onClick={toggleAudio}
+              className={cn("media-btn", !isAudioOn && "media-btn-off")}
+              title={isAudioOn ? "Mute microphone" : "Unmute microphone"}
+            >
+              {isAudioOn ? (
+                <svg
+                  className="btn-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="btn-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                  />
+                </svg>
+              )}
+            </button>
           </div>
         </div>
       </div>
 
       {messages.length > 0 && (
-        <div className="transcript-border">
+        <div className="transcript-border w-full max-w-7xl">
           <div className="transcript">
             <p
               key={lastMessage}
@@ -302,7 +508,7 @@ const Agent = ({
         </div>
       )}
 
-      <div className="w-full flex justify-center">
+      <div className="w-full max-w-7xl flex justify-center px-4 sm:px-6 ">
         {callStatus !== "ACTIVE" ? (
           <button className="relative btn-call" onClick={() => handleCall()}>
             <span
@@ -324,7 +530,7 @@ const Agent = ({
           </button>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

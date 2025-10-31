@@ -15,13 +15,41 @@ export async function getUserStats(userId: string) {
     // Get interview activities
     const interviewActivities = interviewsSnapshot.docs.map((doc) => {
       const data = doc.data();
+      console.log("Interview doc data:", {
+        id: doc.id,
+        role: data.role,
+        createdAt: data.createdAt,
+        createdAtType: typeof data.createdAt,
+        hasSeconds: !!data.createdAt?._seconds,
+      });
+
+      // Handle Firestore Timestamp
+      let completedAtTimestamp;
+      if (data.createdAt?._seconds) {
+        completedAtTimestamp = data.createdAt._seconds * 1000;
+      } else if (data.createdAt?.seconds) {
+        completedAtTimestamp = data.createdAt.seconds * 1000;
+      } else if (data.createdAt?.toMillis) {
+        completedAtTimestamp = data.createdAt.toMillis();
+      } else if (typeof data.createdAt === "number") {
+        completedAtTimestamp = data.createdAt;
+      } else if (data.createdAt instanceof Date) {
+        completedAtTimestamp = data.createdAt.getTime();
+      } else {
+        completedAtTimestamp = Date.now();
+      }
+
+      console.log(
+        "Processed completedAt:",
+        completedAtTimestamp,
+        new Date(completedAtTimestamp).toISOString()
+      );
+
       return {
         id: doc.id,
         type: "interview",
         role: data.role,
-        completedAt: data.createdAt?._seconds
-          ? data.createdAt._seconds * 1000
-          : Date.now(),
+        completedAt: completedAtTimestamp,
       };
     });
 
@@ -39,16 +67,28 @@ export async function getUserStats(userId: string) {
 
     // Get assessment activities
     const assessmentActivities = assessments.map(
-      (assessment: any, index: number) => ({
-        id: `assessment-${index}`,
-        type: "assessment",
-        section: assessment.section,
-        score: assessment.score,
-        total: assessment.total,
-        completedAt: assessment.completedAt,
-      })
+      (assessment: any, index: number) => {
+        console.log("Assessment data:", {
+          index,
+          section: assessment.section,
+          completedAt: assessment.completedAt,
+          completedAtType: typeof assessment.completedAt,
+          score: assessment.score,
+          total: assessment.total,
+        });
+
+        return {
+          id: `assessment-${index}`,
+          type: "assessment",
+          section: assessment.section,
+          score: assessment.score,
+          total: assessment.total,
+          completedAt: assessment.completedAt || Date.now(),
+        };
+      }
     );
 
+    console.log("=== FINAL ASSESSMENT ACTIVITIES ===");
     console.log("Assessment activities:", assessmentActivities);
     console.log("Interview activities:", interviewActivities);
 
@@ -57,7 +97,7 @@ export async function getUserStats(userId: string) {
       .sort((a, b) => b.completedAt - a.completedAt)
       .slice(0, 10);
 
-    return {
+    const result = {
       interviewsCount,
       assessmentsCount,
       averageScore,
@@ -66,6 +106,14 @@ export async function getUserStats(userId: string) {
       interviews: interviewActivities,
       assessments: assessmentActivities,
     };
+
+    console.log("=== FINAL RESULT ===");
+    console.log("Interviews count:", interviewsCount);
+    console.log("Assessments count:", assessmentsCount);
+    console.log("Sample interview:", interviewActivities[0]);
+    console.log("Sample assessment:", assessmentActivities[0]);
+
+    return result;
   } catch (error) {
     console.error("Error fetching user stats:", error);
     return {

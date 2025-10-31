@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import Loader from "@/components/Loader";
+import CodingAssessmentClient from "@/components/CodingAssessmentClient";
 
 type Question = {
   id: string;
@@ -19,8 +20,13 @@ const TEST_DURATION_MS = 30 * 60 * 1000; // 30 minutes
 export default function AssessmentClient({
   section = "aptitude",
 }: {
-  section?: "aptitude" | "technical";
+  section?: "aptitude" | "technical" | "coding";
 }) {
+  // If it's a coding assessment, render the coding component
+  if (section === "coding") {
+    return <CodingAssessmentClient />;
+  }
+
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<Record<string, string>>({});

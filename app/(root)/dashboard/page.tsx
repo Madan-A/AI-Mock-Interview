@@ -16,10 +16,13 @@ export default async function DashboardPage() {
 
   const stats = await getUserStats(user.id);
 
+  // Ensure data is serializable (convert to JSON and back to remove any non-serializable types)
+  const serializedStats = JSON.parse(JSON.stringify(stats));
+
   return (
     <div className="container mx-auto max-w-7xl py-8 px-4">
       <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
-      <DashboardClient user={user} stats={stats} />
+      <DashboardClient user={user} stats={serializedStats} />
     </div>
   );
 }
