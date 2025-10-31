@@ -57,6 +57,7 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
     const allInterviews = stats.interviews || [];
     const allAssessments = stats.assessments || [];
 
+    console.log("=== GRAPH DEBUG ===");
     console.log("All interviews:", allInterviews);
     console.log("All assessments:", allAssessments);
     console.log("Selected month:", selectedMonth, "Year:", selectedYear);
@@ -67,23 +68,55 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
     if (hasData) {
       // Group by week for the selected month
       const startOfMonth = new Date(selectedYear, selectedMonth, 1).getTime();
-      const endOfMonth = new Date(selectedYear, selectedMonth + 1, 0).getTime();
+      const endOfMonth = new Date(
+        selectedYear,
+        selectedMonth + 1,
+        0,
+        23,
+        59,
+        59,
+        999
+      ).getTime();
+
+      console.log("Month range:", {
+        start: new Date(startOfMonth).toISOString(),
+        end: new Date(endOfMonth).toISOString(),
+      });
 
       const data = weeks.map((week, index) => {
         const weekStart = startOfMonth + index * 7 * 24 * 60 * 60 * 1000;
         const weekEnd = Math.min(
-          weekStart + 7 * 24 * 60 * 60 * 1000,
+          weekStart + 7 * 24 * 60 * 60 * 1000 - 1,
           endOfMonth
         );
 
+        console.log(`${week} range:`, {
+          start: new Date(weekStart).toISOString(),
+          end: new Date(weekEnd).toISOString(),
+        });
+
         const interviewsThisWeek = allInterviews.filter((interview) => {
           const completedAt = interview.completedAt;
-          return completedAt >= weekStart && completedAt < weekEnd;
+          const inRange = completedAt >= weekStart && completedAt <= weekEnd;
+          if (inRange) {
+            console.log(
+              `Interview in ${week}:`,
+              new Date(completedAt).toISOString()
+            );
+          }
+          return inRange;
         }).length;
 
         const assessmentsThisWeek = allAssessments.filter((assessment) => {
           const completedAt = assessment.completedAt;
-          return completedAt >= weekStart && completedAt < weekEnd;
+          const inRange = completedAt >= weekStart && completedAt <= weekEnd;
+          if (inRange) {
+            console.log(
+              `Assessment in ${week}:`,
+              new Date(completedAt).toISOString()
+            );
+          }
+          return inRange;
         }).length;
 
         return {
@@ -93,7 +126,7 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
         };
       });
 
-      console.log("Weekly data for selected month:", data);
+      console.log("Final weekly data:", data);
 
       // Check if selected month has any data
       const totalInMonth = data.reduce(
@@ -102,14 +135,16 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
       );
 
       if (totalInMonth === 0) {
-        // If no data in selected month, show message in console
-        console.log("No data in selected month");
+        console.log("⚠️ No data found in selected month");
+      } else {
+        console.log(`✓ Found ${totalInMonth} items in selected month`);
       }
 
       return data;
     }
 
     // No data at all
+    console.log("No data available");
     return weeks.map((week) => ({
       week,
       interviews: 0,

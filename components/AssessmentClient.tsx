@@ -28,40 +28,51 @@ export default function AssessmentClient({
   const [submitted, setSubmitted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [shouldAutoSubmit, setShouldAutoSubmit] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
   const startTimeRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const submittedRef = useRef(false);
+
+  const enterFullscreen = useCallback(async () => {
+    try {
+      if (document.documentElement.requestFullscreen) {
+        await document.documentElement.requestFullscreen();
+        setIsFullscreen(true);
+        setHasStarted(true);
+        startTimeRef.current = Date.now(); // Start timer when fullscreen starts
+        setRemainingMs(TEST_DURATION_MS);
+        toast.success("Assessment started in fullscreen mode");
+      }
+    } catch (error) {
+      console.error("Error entering fullscreen:", error);
+      toast.error("Could not enter fullscreen mode");
+      // Allow assessment to continue even if fullscreen fails
+      setHasStarted(true);
+      startTimeRef.current = Date.now();
+      setRemainingMs(TEST_DURATION_MS);
+    }
+  }, []);
 
   // Enter fullscreen on component mount
   useEffect(() => {
-    const enterFullscreen = async () => {
-      try {
-        if (
-          containerRef.current &&
-          document.documentElement.requestFullscreen
-        ) {
-          await document.documentElement.requestFullscreen();
-          setIsFullscreen(true);
-          toast.success("Assessment started in fullscreen mode");
-        }
-      } catch (error) {
-        console.error("Error entering fullscreen:", error);
-        toast.error("Could not enter fullscreen mode");
-      }
-    };
+    // Wait for questions to load before entering fullscreen
+    if (!isLoading && questions.length > 0 && !hasStarted) {
+      // Add a small delay to ensure DOM is ready
+      const timer = setTimeout(() => {
+        enterFullscreen();
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading, questions.length, hasStarted, enterFullscreen]);
 
-    enterFullscreen();
-
-    // Handle fullscreen change - auto-submit if user exits fullscreen
+  // Handle fullscreen change - auto-submit if user exits fullscreen
+  useEffect(() => {
     const handleFullscreenChange = () => {
-      if (!document.fullscreenElement && !submitted) {
+      if (!document.fullscreenElement && !submittedRef.current) {
         toast.warning("Exiting fullscreen. Submitting assessment...");
         setIsFullscreen(false);
-        // Auto-submit when exiting fullscreen
-        setTimeout(() => {
-          if (!submitted) {
-            handleSubmit();
-          }
-        }, 1000);
+        setShouldAutoSubmit(true);
       } else if (!document.fullscreenElement) {
         setIsFullscreen(false);
       }
@@ -73,10 +84,23 @@ export default function AssessmentClient({
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
       // Exit fullscreen on unmount
       if (document.fullscreenElement) {
-        document.exitFullscreen();
+        document.exitFullscreen().catch(() => {});
       }
     };
-  }, [submitted]);
+  }, []);
+
+  // Auto-submit when shouldAutoSubmit is triggered
+  useEffect(() => {
+    if (shouldAutoSubmit && !submittedRef.current) {
+      const timer = setTimeout(() => {
+        // We'll call submit via ref
+        submitRef.current?.();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [shouldAutoSubmit]);
+
+  const submitRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -88,9 +112,8 @@ export default function AssessmentClient({
       const data = (await res.json()) as { questions: Question[] };
       if (!cancelled) {
         setQuestions(data.questions);
-        startTimeRef.current = Date.now();
-        setRemainingMs(TEST_DURATION_MS);
         setIsLoading(false);
+        // Don't start timer here, wait for user to click start
       }
     })();
     return () => {
@@ -99,7 +122,7 @@ export default function AssessmentClient({
   }, [section]);
 
   useEffect(() => {
-    if (submitted) return;
+    if (submitted || !hasStarted) return;
     const id = setInterval(() => {
       if (startTimeRef.current == null) return;
       const elapsed = Date.now() - startTimeRef.current;
@@ -107,11 +130,11 @@ export default function AssessmentClient({
       setRemainingMs(remaining);
       if (remaining === 0) {
         clearInterval(id);
-        handleSubmit();
+        submitRef.current?.();
       }
     }, 1000);
     return () => clearInterval(id);
-  }, [submitted]);
+  }, [submitted, hasStarted]);
 
   const formattedTime = useMemo(() => {
     const totalSec = Math.ceil(remainingMs / 1000);
@@ -140,7 +163,8 @@ export default function AssessmentClient({
   }, []);
 
   const handleSubmit = useCallback(async () => {
-    if (submitted) return;
+    if (submittedRef.current) return;
+    submittedRef.current = true;
     setSubmitted(true);
 
     // Exit fullscreen
@@ -191,7 +215,12 @@ export default function AssessmentClient({
       total: String(questions.length),
     });
     window.location.href = `/assessment/result?${params.toString()}`;
-  }, [submitted, selected, questions, section]);
+  }, [selected, questions, section]);
+
+  // Assign handleSubmit to ref so it can be called from effects
+  useEffect(() => {
+    submitRef.current = handleSubmit;
+  }, [handleSubmit]);
 
   const q = questions[currentIndex];
 
@@ -203,6 +232,26 @@ export default function AssessmentClient({
         text="Loading assessment questions..."
         fullScreen={isFullscreen}
       />
+    );
+  }
+
+  // Show start button before entering fullscreen
+  if (!hasStarted) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-6 py-16">
+        <h2 className="text-2xl font-bold">Ready to Start Assessment?</h2>
+        <p className="text-muted-foreground text-center max-w-md">
+          The assessment will start in fullscreen mode. You have{" "}
+          {Math.floor(TEST_DURATION_MS / 60000)} minutes to complete{" "}
+          {questions.length} questions.
+          <br />
+          <strong className="text-destructive">Warning:</strong> Exiting
+          fullscreen will automatically submit your test.
+        </p>
+        <Button onClick={enterFullscreen} className="btn-primary" size="lg">
+          Start Assessment in Fullscreen
+        </Button>
+      </div>
     );
   }
 

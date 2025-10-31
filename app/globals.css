@@ -385,3 +385,31 @@ nextjs-portal {
     cursor: none;
   }
 }
+
+/* Hide navbar and footer in fullscreen mode */
+:fullscreen nav,
+:fullscreen footer,
+:-webkit-full-screen nav,
+:-webkit-full-screen footer,
+:-moz-full-screen nav,
+:-moz-full-screen footer,
+:-ms-fullscreen nav,
+:-ms-fullscreen footer {
+  display: none !important;
+}
+
+/* Ensure body takes full height in fullscreen */
+:fullscreen,
+:-webkit-full-screen,
+:-moz-full-screen,
+:-ms-fullscreen {
+  width: 100%;
+  height: 100%;
+}
+
+:fullscreen body,
+:-webkit-full-screen body,
+:-moz-full-screen body,
+:-ms-fullscreen body {
+  overflow: auto;
+}
