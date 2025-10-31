@@ -78,12 +78,12 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
 
         const interviewsThisWeek = allInterviews.filter((interview) => {
           const completedAt = interview.completedAt;
-          return completedAt >= weekStart && completedAt <= weekEnd;
+          return completedAt >= weekStart && completedAt < weekEnd;
         }).length;
 
         const assessmentsThisWeek = allAssessments.filter((assessment) => {
           const completedAt = assessment.completedAt;
-          return completedAt >= weekStart && completedAt <= weekEnd;
+          return completedAt >= weekStart && completedAt < weekEnd;
         }).length;
 
         return {
@@ -102,19 +102,8 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
       );
 
       if (totalInMonth === 0) {
-        // If no data in selected month, show summary of all data
-        console.log("No data in selected month, showing all-time summary");
-        return weeks.map((week, index) => {
-          // Distribute data evenly across weeks for visualization
-          const interviewsPerWeek = index === 0 ? allInterviews.length : 0;
-          const assessmentsPerWeek = index === 0 ? allAssessments.length : 0;
-
-          return {
-            week,
-            interviews: interviewsPerWeek,
-            assessments: assessmentsPerWeek,
-          };
-        });
+        // If no data in selected month, show message in console
+        console.log("No data in selected month");
       }
 
       return data;
@@ -126,7 +115,7 @@ export default function DashboardClient({ user, stats }: DashboardClientProps) {
       interviews: 0,
       assessments: 0,
     }));
-  }, [selectedMonth, selectedYear, stats.interviews, stats.assessments]);
+  }, [selectedMonth, selectedYear, stats]);
 
   const handleSaveProfile = async () => {
     setIsLoading(true);

@@ -380,7 +380,7 @@ nextjs-portal {
   .cursor-glow-container {
     cursor: none;
   }
-  
+
   .cursor-glow-container * {
     cursor: none;
   }

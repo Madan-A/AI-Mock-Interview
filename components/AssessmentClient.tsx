@@ -51,11 +51,17 @@ export default function AssessmentClient({
 
     enterFullscreen();
 
-    // Prevent exit from fullscreen
+    // Handle fullscreen change - auto-submit if user exits fullscreen
     const handleFullscreenChange = () => {
       if (!document.fullscreenElement && !submitted) {
-        toast.warning("Please stay in fullscreen mode during the assessment");
-        enterFullscreen();
+        toast.warning("Exiting fullscreen. Submitting assessment...");
+        setIsFullscreen(false);
+        // Auto-submit when exiting fullscreen
+        setTimeout(() => {
+          if (!submitted) {
+            handleSubmit();
+          }
+        }, 1000);
       } else if (!document.fullscreenElement) {
         setIsFullscreen(false);
       }
@@ -65,6 +71,10 @@ export default function AssessmentClient({
 
     return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      // Exit fullscreen on unmount
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
     };
   }, [submitted]);
 
