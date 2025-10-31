@@ -2,6 +2,9 @@ import Agent from "@/components/Agent";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import { redirect } from "next/navigation";
 
+// Force dynamic for auth check but enable faster navigation
+export const dynamic = "force-dynamic";
+
 const Page = async () => {
   const user = await getCurrentUser();
 

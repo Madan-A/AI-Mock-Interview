@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
 import { interviewer } from "@/constants";
 import { createFeedback } from "@/lib/actions/general.action";
+import Loader from "@/components/Loader";
 
 enum CallStatus {
   INACTIVE = "INACTIVE",
@@ -34,6 +35,13 @@ const Agent = ({
   const [messages, setMessages] = useState<SavedMessage[]>([]);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [lastMessage, setLastMessage] = useState<string>("");
+  const [isInitializing, setIsInitializing] = useState(true);
+
+  useEffect(() => {
+    // Simulate initialization
+    const timer = setTimeout(() => setIsInitializing(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const onCallStart = () => {
@@ -239,6 +247,11 @@ const Agent = ({
     setCallStatus(CallStatus.FINISHED);
     vapi.stop();
   };
+
+  // Show loader while initializing
+  if (isInitializing) {
+    return <Loader size="lg" text="Initializing interview..." />;
+  }
 
   return (
     <>

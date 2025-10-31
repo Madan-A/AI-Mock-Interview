@@ -17,6 +17,16 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  experimental: {
+    // Optimize client-side navigation
+    optimizePackageImports: ["@/components"],
+    // Enable parallel routes for faster navigation
+    serverActions: {
+      bodySizeLimit: "2mb",
+    },
+  },
+  // Optimize for faster navigation
+  reactStrictMode: false, // Disable strict mode in development to reduce re-renders
 };
 
 export default nextConfig;

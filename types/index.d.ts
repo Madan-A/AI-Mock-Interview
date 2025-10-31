@@ -36,6 +36,25 @@ interface User {
   name: string;
   email: string;
   id: string;
+  bio?: string;
+  phone?: string;
+  assessments?: Assessment[];
+}
+
+interface Assessment {
+  score: number;
+  total: number;
+  attempted: number;
+  section: string;
+  completedAt: number;
+}
+
+interface UserStats {
+  interviewsCount: number;
+  assessmentsCount: number;
+  averageScore: number;
+  recentActivity: Assessment[];
+  totalTests: number;
 }
 
 interface InterviewCardProps {

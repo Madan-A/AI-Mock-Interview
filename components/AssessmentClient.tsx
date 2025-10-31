@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import Loader from "@/components/Loader";
 
 type Question = {
   id: string;
@@ -24,7 +26,47 @@ export default function AssessmentClient({
   const [selected, setSelected] = useState<Record<string, string>>({});
   const [remainingMs, setRemainingMs] = useState<number>(TEST_DURATION_MS);
   const [submitted, setSubmitted] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const startTimeRef = useRef<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Enter fullscreen on component mount
+  useEffect(() => {
+    const enterFullscreen = async () => {
+      try {
+        if (
+          containerRef.current &&
+          document.documentElement.requestFullscreen
+        ) {
+          await document.documentElement.requestFullscreen();
+          setIsFullscreen(true);
+          toast.success("Assessment started in fullscreen mode");
+        }
+      } catch (error) {
+        console.error("Error entering fullscreen:", error);
+        toast.error("Could not enter fullscreen mode");
+      }
+    };
+
+    enterFullscreen();
+
+    // Prevent exit from fullscreen
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && !submitted) {
+        toast.warning("Please stay in fullscreen mode during the assessment");
+        enterFullscreen();
+      } else if (!document.fullscreenElement) {
+        setIsFullscreen(false);
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, [submitted]);
 
   useEffect(() => {
     let cancelled = false;
@@ -38,12 +80,13 @@ export default function AssessmentClient({
         setQuestions(data.questions);
         startTimeRef.current = Date.now();
         setRemainingMs(TEST_DURATION_MS);
+        setIsLoading(false);
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [section]);
 
   useEffect(() => {
     if (submitted) return;
@@ -69,28 +112,59 @@ export default function AssessmentClient({
     return `${m}:${s}`;
   }, [remainingMs]);
 
-  function onSelect(option: string) {
-    const q = questions[currentIndex];
-    if (!q) return;
-    setSelected((prev) => ({ ...prev, [q.id]: option }));
-  }
+  const onSelect = useCallback(
+    (option: string) => {
+      const q = questions[currentIndex];
+      if (!q) return;
+      setSelected((prev) => ({ ...prev, [q.id]: option }));
+    },
+    [questions, currentIndex]
+  );
 
-  function next() {
+  const next = useCallback(() => {
     setCurrentIndex((i) => Math.min(i + 1, questions.length - 1));
-  }
+  }, [questions.length]);
 
-  function prev() {
+  const prev = useCallback(() => {
     setCurrentIndex((i) => Math.max(i - 1, 0));
-  }
+  }, []);
 
-  function handleSubmit() {
+  const handleSubmit = useCallback(async () => {
     if (submitted) return;
     setSubmitted(true);
+
+    // Exit fullscreen
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+        setIsFullscreen(false);
+      }
+    } catch (error) {
+      console.error("Error exiting fullscreen:", error);
+    }
+
     const attempted = Object.keys(selected).length;
     let correct = 0;
     for (const q of questions) {
       if (selected[q.id] && selected[q.id] === q.correctAnswer) correct++;
     }
+
+    // Save assessment result to user profile
+    try {
+      await fetch("/api/assessment/save-result", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          score: correct,
+          total: questions.length,
+          attempted,
+          section,
+        }),
+      });
+    } catch (error) {
+      console.error("Error saving assessment result:", error);
+    }
+
     // Persist for review page
     try {
       const payload = {
@@ -107,12 +181,23 @@ export default function AssessmentClient({
       total: String(questions.length),
     });
     window.location.href = `/assessment/result?${params.toString()}`;
-  }
+  }, [submitted, selected, questions, section]);
 
   const q = questions[currentIndex];
 
+  // Show loader while loading questions
+  if (isLoading || questions.length === 0) {
+    return (
+      <Loader
+        size="lg"
+        text="Loading assessment questions..."
+        fullScreen={isFullscreen}
+      />
+    );
+  }
+
   return (
-    <div className="flex flex-col gap-6">
+    <div ref={containerRef} className="flex flex-col gap-6">
       <div className="flex items-center justify-between p-4 rounded-md border">
         <h2 className="text-xl font-semibold">Assessment</h2>
         <div className="text-lg font-mono">Time Remaining: {formattedTime}</div>

@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, memo } from "react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 type Question = {
   id: string;
@@ -12,9 +13,13 @@ type Question = {
   correctAnswer: string;
 };
 
-export default function AssessmentReviewClient() {
+const AssessmentReviewClient = memo(function AssessmentReviewClient() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [selected, setSelected] = useState<Record<string, string>>({});
+  const [explanations, setExplanations] = useState<Record<string, string>>({});
+  const [loadingExplanations, setLoadingExplanations] = useState<
+    Record<string, boolean>
+  >({});
 
   useEffect(() => {
     try {
@@ -28,6 +33,45 @@ export default function AssessmentReviewClient() {
       setSelected(parsed.selected || {});
     } catch {}
   }, []);
+
+  const handleExplain = async (q: Question) => {
+    if (explanations[q.id]) {
+      // Toggle off if already shown
+      setExplanations((prev) => {
+        const newExplanations = { ...prev };
+        delete newExplanations[q.id];
+        return newExplanations;
+      });
+      return;
+    }
+
+    setLoadingExplanations((prev) => ({ ...prev, [q.id]: true }));
+
+    try {
+      const response = await fetch("/api/assessment/explain", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          question: q.question,
+          correctAnswer: q.correctAnswer,
+          userAnswer: selected[q.id],
+          options: q.options,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to generate explanation");
+      }
+
+      const data = await response.json();
+      setExplanations((prev) => ({ ...prev, [q.id]: data.explanation }));
+    } catch (error) {
+      console.error("Error fetching explanation:", error);
+      toast.error("Failed to generate explanation. Please try again.");
+    } finally {
+      setLoadingExplanations((prev) => ({ ...prev, [q.id]: false }));
+    }
+  };
 
   if (!questions.length) {
     return (
@@ -101,6 +145,35 @@ export default function AssessmentReviewClient() {
                 );
               })}
             </div>
+
+            {/* Explain Button */}
+            <div className="mt-4">
+              <Button
+                onClick={() => handleExplain(q)}
+                variant="outline"
+                size="sm"
+                disabled={loadingExplanations[q.id]}
+                className="w-full sm:w-auto"
+              >
+                {loadingExplanations[q.id]
+                  ? "Generating..."
+                  : explanations[q.id]
+                  ? "Hide Explanation"
+                  : "Explain How"}
+              </Button>
+            </div>
+
+            {/* Explanation Display */}
+            {explanations[q.id] && (
+              <div className="mt-3 rounded-md bg-blue-50 border border-blue-200 p-4">
+                <h4 className="text-sm font-semibold text-blue-900 mb-2">
+                  Explanation:
+                </h4>
+                <p className="text-sm text-blue-800 leading-relaxed">
+                  {explanations[q.id]}
+                </p>
+              </div>
+            )}
           </div>
         );
       })}
@@ -112,4 +185,6 @@ export default function AssessmentReviewClient() {
       </div>
     </div>
   );
-}
+});
+
+export default AssessmentReviewClient;

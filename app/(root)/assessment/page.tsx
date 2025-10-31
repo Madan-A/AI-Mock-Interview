@@ -3,10 +3,13 @@ import AssessmentSectionPickerClient from "@/components/AssessmentSectionPickerC
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import { redirect } from "next/navigation";
 
+// Enable dynamic rendering for auth
+export const dynamic = "force-dynamic";
+
 export default async function AssessmentPage({
   searchParams,
 }: {
-  searchParams?: Record<string, string | string[] | undefined>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const user = await getCurrentUser();
   if (!user) {
@@ -14,7 +17,8 @@ export default async function AssessmentPage({
     return null;
   }
 
-  const sectionParam = (searchParams?.section as string) || "";
+  const params = await searchParams;
+  const sectionParam = (params?.section as string) || "";
   const section =
     sectionParam === "technical"
       ? "technical"

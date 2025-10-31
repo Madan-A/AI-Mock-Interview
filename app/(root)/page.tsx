@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import InterviewCard from "@/components/InterviewCard";
+import CursorGlow from "@/components/CursorGlow";
 
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import { redirect } from "next/navigation";
@@ -10,6 +11,10 @@ import {
   getInterviewsByUserId,
   getLatestInterviews,
 } from "@/lib/actions/general.action";
+
+// Enable static generation with revalidation
+export const revalidate = 60; // Revalidate every 60 seconds
+export const dynamic = "force-dynamic"; // Always fetch fresh data for auth
 
 async function Home() {
   const user = await getCurrentUser();
@@ -32,19 +37,24 @@ async function Home() {
 
   return (
     <>
-      <section className="card-cta">
-        <div className="flex flex-col gap-6 max-w-lg">
+      <CursorGlow />
+      <section className="card-cta relative cursor-glow-container">
+        <div className="flex flex-col gap-6 max-w-lg z-10 relative">
           <h2>Get Interview-Ready with AI-Powered Practice & Feedback</h2>
           <p className="text-lg">
             Practice real interview questions & get instant feedback
           </p>
 
           <Button asChild className="btn-primary max-sm:w-full">
-            <Link href="/interview">Start an Interview</Link>
+            <Link href="/interview" prefetch={true}>
+              Start an Interview
+            </Link>
           </Button>
 
           <Button asChild className="btn-primary max-sm:w-full">
-            <Link href="/assessment">Start Assessment</Link>
+            <Link href="/assessment" prefetch={true}>
+              Start Assessment
+            </Link>
           </Button>
         </div>
 
@@ -53,7 +63,7 @@ async function Home() {
           alt="robo-dude"
           width={400}
           height={400}
-          className="max-sm:hidden"
+          className="max-sm:hidden z-10 relative"
         />
       </section>
 

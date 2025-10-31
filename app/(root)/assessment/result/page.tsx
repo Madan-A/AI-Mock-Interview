@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 export default async function AssessmentResultPage({
   searchParams,
 }: {
-  searchParams: Record<string, string | string[] | undefined>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const user = await getCurrentUser();
   if (!user) {
@@ -12,10 +12,11 @@ export default async function AssessmentResultPage({
     return null;
   }
 
-  const attempted = Number(searchParams.attempted ?? 0);
-  const correct = Number(searchParams.correct ?? 0);
-  const score = Number(searchParams.score ?? 0);
-  const total = Number(searchParams.total ?? 30);
+  const params = await searchParams;
+  const attempted = Number(params.attempted ?? 0);
+  const correct = Number(params.correct ?? 0);
+  const score = Number(params.score ?? 0);
+  const total = Number(params.total ?? 30);
 
   return (
     <div className="container mx-auto max-w-2xl py-10">

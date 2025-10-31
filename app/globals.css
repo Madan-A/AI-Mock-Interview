@@ -332,3 +332,56 @@
     transform: translateY(0);
   }
 }
+
+/* Hide Next.js loading indicators */
+#__next-build-watcher,
+#__next-route-announcer,
+nextjs-portal {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Cursor Glow Effect */
+.cursor-glow-container {
+  --mouse-x: 0px;
+  --mouse-y: 0px;
+  position: relative;
+}
+
+.cursor-glow-container::before {
+  content: "";
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle,
+    rgba(221, 223, 255, 0.2) 0%,
+    rgba(202, 197, 254, 0.15) 25%,
+    rgba(180, 190, 254, 0.08) 50%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  left: var(--mouse-x);
+  top: var(--mouse-y);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+.cursor-glow-container:hover::before {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cursor-glow-container {
+    cursor: none;
+  }
+  
+  .cursor-glow-container * {
+    cursor: none;
+  }
+}

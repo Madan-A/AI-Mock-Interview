@@ -3,29 +3,26 @@ import Image from "next/image";
 import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 
-import { isAuthenticated } from "@/lib/actions/auth.action";
+import { isAuthenticated, getCurrentUser } from "@/lib/actions/auth.action";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
+// Enable dynamic rendering but with caching
+export const dynamic = "force-dynamic";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const isUserAuthenticated = await isAuthenticated();
   if (!isUserAuthenticated) redirect("/sign-in");
 
-  return (
-    <div className="root-layout">
-      <nav>
-        <Link href="/" className="flex items-center gap-2">
-          {/* keep aspect ratio when CSS modifies only one dimension */}
-          <Image
-            src="/logo.svg"
-            alt="MockMate Logo"
-            width={38}
-            height={32}
-            style={{ width: "auto", height: "auto" }}
-          />
-          <h2 className="text-primary-100">MockMate</h2>
-        </Link>
-      </nav>
+  const user = await getCurrentUser();
 
-      {children}
+  return (
+    <div className="root-layout flex flex-col min-h-screen">
+      <Navbar user={user} />
+
+      <main className="flex-1">{children}</main>
+
+      <Footer />
     </div>
   );
 };
