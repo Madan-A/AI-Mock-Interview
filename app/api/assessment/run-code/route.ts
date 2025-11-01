@@ -36,7 +36,7 @@ IMPORTANT:
 Do not include any explanation, markdown formatting, or additional text. Return ONLY the JSON array.`;
 
     const response = await genAI.models.generateContent({
-      model: "gemini-2.0-flash-exp",
+      model: "gemini-2.5-flash",
       contents: prompt,
     });
 
