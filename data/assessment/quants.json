@@ -1,0 +1,308 @@
+[
+  {
+    "category": "quants",
+    "question": "What is the value of 12 + 15?",
+    "options": ["25", "26", "27", "28"],
+    "correctAnswer": "27"
+  },
+  {
+    "category": "quants",
+    "question": "If x = 5, what is 3x^2?",
+    "options": ["45", "50", "60", "75"],
+    "correctAnswer": "75"
+  },
+  {
+    "category": "quants",
+    "question": "Simplify: 48 / 6 × 2",
+    "options": ["4", "8", "12", "16"],
+    "correctAnswer": "16"
+  },
+  {
+    "category": "quants",
+    "question": "If the roots of the quadratic equation x^2 - 7x + 12 = 0 are p and q, what is p + q?",
+    "options": ["5", "6", "7", "8"],
+    "correctAnswer": "7"
+  },
+  {
+    "category": "quants",
+    "question": "A train travels 240 km in 3 hours. What is its speed in km/h?",
+    "options": ["70", "75", "80", "85"],
+    "correctAnswer": "80"
+  },
+  {
+    "category": "quants",
+    "question": "What is the value of sqrt(144) + sqrt(81)?",
+    "options": ["15", "18", "21", "24"],
+    "correctAnswer": "21"
+  },
+  {
+    "category": "quants",
+    "question": "If 2^x = 8, what is the value of x?",
+    "options": ["2", "3", "4", "5"],
+    "correctAnswer": "3"
+  },
+  {
+    "category": "quants",
+    "question": "A shopkeeper marks an item 40% above cost price and offers a 15% discount. If the cost price is ₹1000, what is the selling price?",
+    "options": ["₹1090", "₹1120", "₹1150", "₹1190"],
+    "correctAnswer": "₹1190"
+  },
+  {
+    "category": "quants",
+    "question": "What is the area of a circle with radius 7 cm? (Use pi = 22/7)",
+    "options": ["144 cm²", "154 cm²", "164 cm²", "174 cm²"],
+    "correctAnswer": "154 cm²"
+  },
+  {
+    "category": "quants",
+    "question": "If a : b = 3 : 4 and b : c = 5 : 6, what is a : c?",
+    "options": ["15:24", "18:20", "20:24", "15:18"],
+    "correctAnswer": "15:24"
+  },
+  {
+    "category": "quants",
+    "question": "Solve for x: 3x - 7 = 2(x + 1)",
+    "options": ["7", "8", "9", "10"],
+    "correctAnswer": "9"
+  },
+  {
+    "category": "quants",
+    "question": "The sum of the first 10 terms of an AP is 310. If the first term is 4, what is the common difference?",
+    "options": ["5", "6", "7", "8"],
+    "correctAnswer": "6"
+  },
+  {
+    "category": "quants",
+    "question": "What is 15% of 240?",
+    "options": ["32", "36", "40", "44"],
+    "correctAnswer": "36"
+  },
+  {
+    "category": "quants",
+    "question": "If sin θ = 3/5, what is cos θ?",
+    "options": ["3/5", "4/5", "5/3", "5/4"],
+    "correctAnswer": "4/5"
+  },
+  {
+    "category": "quants",
+    "question": "A sum of money doubles in 5 years at simple interest. In how many years will it triple?",
+    "options": ["7.5", "8", "10", "12.5"],
+    "correctAnswer": "10"
+  },
+  {
+    "category": "quants",
+    "question": "What is the value of (2^3 × 3^2) ÷ (2 × 3)?",
+    "options": ["12", "18", "24", "36"],
+    "correctAnswer": "24"
+  },
+  {
+    "category": "quants",
+    "question": "The HCF of 36 and 60 is:",
+    "options": ["6", "12", "18", "24"],
+    "correctAnswer": "12"
+  },
+  {
+    "category": "quants",
+    "question": "If x^2 + 1/x^2 = 83, what is x + 1/x?",
+    "options": ["7", "8", "9", "10"],
+    "correctAnswer": "9"
+  },
+  {
+    "category": "quants",
+    "question": "A rectangle has length 12 cm and breadth 5 cm. What is the length of its diagonal?",
+    "options": ["13 cm", "14 cm", "15 cm", "16 cm"],
+    "correctAnswer": "13 cm"
+  },
+  {
+    "category": "quants",
+    "question": "What is the 20th term of the sequence 2, 5, 8, 11, ...?",
+    "options": ["57", "58", "59", "60"],
+    "correctAnswer": "59"
+  },
+  {
+    "category": "quants",
+    "question": "If p and q are roots of x^2 - 5x + 6 = 0, what is p^3 + q^3?",
+    "options": ["25", "35", "45", "55"],
+    "correctAnswer": "35"
+  },
+  {
+    "category": "quants",
+    "question": "A boat covers 24 km upstream and 36 km downstream in 6 hours. It covers 36 km upstream and 24 km downstream in 7 hours. What is the speed of the stream?",
+    "options": ["2 km/h", "3 km/h", "4 km/h", "5 km/h"],
+    "correctAnswer": "3 km/h"
+  },
+  {
+    "category": "quants",
+    "question": "What is log10 1000?",
+    "options": ["2", "3", "4", "5"],
+    "correctAnswer": "3"
+  },
+  {
+    "category": "quants",
+    "question": "The compound interest on ₹8000 at 10% per annum for 2 years is:",
+    "options": ["₹1600", "₹1680", "₹1720", "₹1800"],
+    "correctAnswer": "₹1680"
+  },
+  {
+    "category": "quants",
+    "question": "What is the value of tan 45° × sin 60°?",
+    "options": ["sqrt(3)/2", "1/2", "sqrt(3)", "1"],
+    "correctAnswer": "sqrt(3)/2"
+  },
+  {
+    "category": "quants",
+    "question": "If f(x) = 2x + 3, what is f^(-1)(7)?",
+    "options": ["2", "3", "4", "5"],
+    "correctAnswer": "2"
+  },
+  {
+    "category": "quants",
+    "question": "A bag contains 5 red and 3 blue balls. What is the probability of drawing a red ball?",
+    "options": ["3/8", "5/8", "3/5", "2/5"],
+    "correctAnswer": "5/8"
+  },
+  {
+    "category": "quants",
+    "question": "The volume of a cube with edge 4 cm is:",
+    "options": ["32 cm³", "48 cm³", "64 cm³", "80 cm³"],
+    "correctAnswer": "64 cm³"
+  },
+  {
+    "category": "quants",
+    "question": "If a + b = 7 and ab = 12, what is a^2 + b^2?",
+    "options": ["25", "35", "49", "55"],
+    "correctAnswer": "25"
+  },
+  {
+    "category": "quants",
+    "question": "What is the median of the data: 12, 15, 18, 20, 22, 25, 30?",
+    "options": ["18", "20", "22", "25"],
+    "correctAnswer": "20"
+  },
+  {
+    "category": "quants",
+    "question": "A person sells an article at a profit of 20%. If he had sold it for ₹60 more, the profit would have been 30%. What is the cost price?",
+    "options": ["₹500", "₹600", "₹700", "₹800"],
+    "correctAnswer": "₹600"
+  },
+  {
+    "category": "quants",
+    "question": "What is the value of i^4, where i = sqrt(-1)?",
+    "options": ["-1", "0", "1", "i"],
+    "correctAnswer": "1"
+  },
+  {
+    "category": "quants",
+    "question": "The sum of angles in a triangle is:",
+    "options": ["90°", "180°", "270°", "360°"],
+    "correctAnswer": "180°"
+  },
+  {
+    "category": "quants",
+    "question": "If 3^(2x) = 27, what is x?",
+    "options": ["1.5", "2", "2.5", "3"],
+    "correctAnswer": "1.5"
+  },
+  {
+    "category": "quants",
+    "question": "What is the LCM of 12, 18, and 24?",
+    "options": ["36", "48", "72", "96"],
+    "correctAnswer": "72"
+  },
+  {
+    "category": "quants",
+    "question": "A cylinder has radius 7 cm and height 10 cm. What is its curved surface area? (Use pi = 22/7)",
+    "options": ["420 cm²", "440 cm²", "460 cm²", "480 cm²"],
+    "correctAnswer": "440 cm²"
+  },
+  {
+    "category": "quants",
+    "question": "If x is an integer and 3 < x < 8, how many possible values are there for x?",
+    "options": ["3", "4", "5", "6"],
+    "correctAnswer": "4"
+  },
+  {
+    "category": "quants",
+    "question": "What is the value of 2/3 + 3/4 - 1/6?",
+    "options": ["3/4", "5/6", "7/8", "11/12"],
+    "correctAnswer": "11/12"
+  },
+  {
+    "category": "quants",
+    "question": "A man completes a journey in 10 hours. He travels the first half at 20 km/h and the second half at 30 km/h. What is the total distance?",
+    "options": ["200 km", "240 km", "250 km", "300 km"],
+    "correctAnswer": "240 km"
+  },
+  {
+    "category": "quants",
+    "question": "What is the derivative of x^3 - 3x + 5?",
+    "options": ["3x^2 - 3", "3x^2 + 3", "x^2 - 3", "3x^2 - 1"],
+    "correctAnswer": "3x^2 - 3"
+  },
+  {
+    "category": "quants",
+    "question": "If the perimeter of a square is 48 cm, what is its area?",
+    "options": ["100 cm²", "121 cm²", "144 cm²", "169 cm²"],
+    "correctAnswer": "144 cm²"
+  },
+  {
+    "category": "quants",
+    "question": "What is 2^3 × 3^2 × 5^0?",
+    "options": ["36", "48", "72", "80"],
+    "correctAnswer": "72"
+  },
+  {
+    "category": "quants",
+    "question": "The roots of x^2 - 4x - 5 = 0 are:",
+    "options": ["-1, 5", "1, -5", "-1, -5", "5, -5"],
+    "correctAnswer": "-1, 5"
+  },
+  {
+    "category": "quants",
+    "question": "A sum amounts to ₹1331 at 10% p.a. in 3 years at CI. What is the principal?",
+    "options": ["₹1000", "₹1100", "₹1200", "₹1250"],
+    "correctAnswer": "₹1000"
+  },
+  {
+    "category": "quants",
+    "question": "What is the value of sec 0°?",
+    "options": ["0", "1", "undefined", "∞"],
+    "correctAnswer": "1"
+  },
+  {
+    "category": "quants",
+    "question": "If a = 2 + sqrt(3), what is a + 1/a?",
+    "options": ["4", "5", "6", "7"],
+    "correctAnswer": "4"
+  },
+  {
+    "category": "quants",
+    "question": "The mean of 5 numbers is 18. If one number is excluded, the mean becomes 16. What is the excluded number?",
+    "options": ["24", "26", "28", "30"],
+    "correctAnswer": "26"
+  },
+  {
+    "category": "quants",
+    "question": "What is the 15th term of the GP: 2, 6, 18, 54, ...?",
+    "options": ["118098", "177147", "236196", "354294"],
+    "correctAnswer": "118098"
+  },
+  {
+    "category": "quants",
+    "question": "A triangle has sides 5, 12, 13. What is its area?",
+    "options": ["24", "30", "36", "40"],
+    "correctAnswer": "30"
+  },
+  {
+    "category": "quants",
+    "question": "If log2 x = 5, what is x?",
+    "options": ["10", "16", "32", "64"],
+    "correctAnswer": "32"
+  },
+  {
+    "category": "quants",
+    "question": "The value of the integral from 0 to 1 of x^2 dx is:",
+    "options": ["1/3", "1/2", "2/3", "1"],
+    "correctAnswer": "1/3"
+  }
+]

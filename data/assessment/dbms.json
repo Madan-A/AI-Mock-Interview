@@ -1,0 +1,302 @@
+[
+  {
+    "category": "dbms",
+    "question": "Which normal form removes transitive dependency?",
+    "options": ["1NF", "2NF", "3NF", "BCNF"],
+    "correctAnswer": "3NF"
+  },
+  {
+    "category": "dbms",
+    "question": "Which SQL command is used to remove a table?",
+    "options": ["DELETE TABLE", "DROP TABLE", "REMOVE TABLE", "TRUNCATE TABLE"],
+    "correctAnswer": "DROP TABLE"
+  },
+  {
+    "category": "dbms",
+    "question": "What does ACID property 'I' stand for?",
+    "options": ["Isolation", "Indexing", "Integrity", "Iteration"],
+    "correctAnswer": "Isolation"
+  },
+  {
+    "category": "dbms",
+    "question": "In a B-Tree of order m, what is the maximum number of keys in a node?",
+    "options": ["m-1", "m", "2m-1", "2m"],
+    "correctAnswer": "m-1"
+  },
+  {
+    "category": "dbms",
+    "question": "Which join returns only matched rows from both tables?",
+    "options": ["LEFT JOIN", "RIGHT JOIN", "INNER JOIN", "FULL OUTER JOIN"],
+    "correctAnswer": "INNER JOIN"
+  },
+  {
+    "category": "dbms",
+    "question": "What is the purpose of the 'GRANT' command in SQL?",
+    "options": ["To create a user", "To assign privileges", "To revoke access", "To backup data"],
+    "correctAnswer": "To assign privileges"
+  },
+  {
+    "category": "dbms",
+    "question": "Which isolation level allows dirty reads?",
+    "options": ["Read Uncommitted", "Read Committed", "Repeatable Read", "Serializable"],
+    "correctAnswer": "Read Uncommitted"
+  },
+  {
+    "category": "dbms",
+    "question": "What does DDL stand for?",
+    "options": ["Data Definition Language", "Data Manipulation Language", "Data Control Language", "Data Query Language"],
+    "correctAnswer": "Data Definition Language"
+  },
+  {
+    "category": "dbms",
+    "question": "In ER modeling, a weak entity is represented by:",
+    "options": ["Single rectangle", "Double rectangle", "Diamond", "Oval"],
+    "correctAnswer": "Double rectangle"
+  },
+  {
+    "category": "dbms",
+    "question": "Which of the following is a non-clustered index?",
+    "options": ["Primary Key", "Unique Key", "Heap index", "Clustered index"],
+    "correctAnswer": "Heap index"
+  },
+  {
+    "category": "dbms",
+    "question": "What is the output of SELECT COUNT(*) FROM table_name where 1=0?",
+    "options": ["0", "1", "NULL", "Error"],
+    "correctAnswer": "0"
+  },
+  {
+    "category": "dbms",
+    "question": "Which normal form is based on the concept of full functional dependency?",
+    "options": ["1NF", "2NF", "3NF", "BCNF"],
+    "correctAnswer": "2NF"
+  },
+  {
+    "category": "dbms",
+    "question": "What is a candidate key?",
+    "options": ["A key that can uniquely identify a tuple", "A composite key", "A foreign key", "A surrogate key"],
+    "correctAnswer": "A key that can uniquely identify a tuple"
+  },
+  {
+    "category": "dbms",
+    "question": "Which command is used to modify the structure of a table?",
+    "options": ["UPDATE", "ALTER", "MODIFY", "CHANGE"],
+    "correctAnswer": "ALTER"
+  },
+  {
+    "category": "dbms",
+    "question": "In SQL, what does the HAVING clause filter?",
+    "options": ["Individual rows", "Groups", "Columns", "Indexes"],
+    "correctAnswer": "Groups"
+  },
+  {
+    "category": "dbms",
+    "question": "What is the maximum number of tables that can be joined in a single SQL query theoretically?",
+    "options": ["255", "No limit", "Depends on DBMS", "1024"],
+    "correctAnswer": "Depends on DBMS"
+  },
+  {
+    "category": "dbms",
+    "question": "Which of the following is true about a foreign key?",
+    "options": ["It must be unique", "It references a primary key", "It cannot be NULL", "It is always indexed"],
+    "correctAnswer": "It references a primary key"
+  },
+  {
+    "category": "dbms",
+    "question": "What is a stored procedure?",
+    "options": ["A query saved in a file", "A precompiled collection of SQL statements", "A temporary table", "A view with parameters"],
+    "correctAnswer": "A precompiled collection of SQL statements"
+  },
+  {
+    "category": "dbms",
+    "question": "Which index is most suitable for frequent updates on the indexed column?",
+    "options": ["Clustered", "Non-clustered", "Bitmap", "Hash"],
+    "correctAnswer": "Non-clustered"
+  },
+  {
+    "category": "dbms",
+    "question": "What is the result of a CROSS JOIN?",
+    "options": ["Matched rows only", "All combinations of rows", "Left table rows", "Right table rows"],
+    "correctAnswer": "All combinations of rows"
+  },
+  {
+    "category": "dbms",
+    "question": "Which of the following prevents phantom reads?",
+    "options": ["Read Committed", "Repeatable Read", "Serializable", "Read Uncommitted"],
+    "correctAnswer": "Serializable"
+  },
+  {
+    "category": "dbms",
+    "question": "What is the purpose of the COALESCE function?",
+    "options": ["To concatenate strings", "To return the first non-NULL value", "To count non-NULL values", "To replace NULL with 0"],
+    "correctAnswer": "To return the first non-NULL value"
+  },
+  {
+    "category": "dbms",
+    "question": "In normalization, what is a partial dependency?",
+    "options": ["Non-key depends on full primary key", "Non-key depends on part of composite key", "Key depends on non-key", "All attributes depend on key"],
+    "correctAnswer": "Non-key depends on part of composite key"
+  },
+  {
+    "category": "dbms",
+    "question": "Which clause is used to eliminate duplicate rows in SQL?",
+    "options": ["UNIQUE", "DISTINCT", "GROUP BY", "HAVING"],
+    "correctAnswer": "DISTINCT"
+  },
+  {
+    "category": "dbms",
+    "question": "What is a composite primary key?",
+    "options": ["A single column key", "Multiple columns forming a key", "A foreign key", "A surrogate key"],
+    "correctAnswer": "Multiple columns forming a key"
+  },
+  {
+    "category": "dbms",
+    "question": "Which of the following is a type of trigger timing?",
+    "options": ["BEFORE", "DURING", "ON", "WHEN"],
+    "correctAnswer": "BEFORE"
+  },
+  {
+    "category": "dbms",
+    "question": "What is the default sorting order in ORDER BY clause?",
+    "options": ["DESC", "ASC", "RANDOM", "No order"],
+    "correctAnswer": "ASC"
+  },
+  {
+    "category": "dbms",
+    "question": "Which of the following is NOT a type of DBMS?",
+    "options": ["Relational", "Hierarchical", "Network", "Sequential"],
+    "correctAnswer": "Sequential"
+  },
+  {
+    "category": "dbms",
+    "question": "What does the TRUNCATE command do?",
+    "options": ["Deletes all rows and keeps structure", "Deletes table completely", "Deletes specific rows", "Modifies data"],
+    "correctAnswer": "Deletes all rows and keeps structure"
+  },
+  {
+    "category": "dbms",
+    "question": "Which join includes all rows from the left table and matched rows from the right?",
+    "options": ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL JOIN"],
+    "correctAnswer": "LEFT JOIN"
+  },
+  {
+    "category": "dbms",
+    "question": "What is a materialized view?",
+    "options": ["A virtual table", "A physical copy of a view", "A temporary table", "A synonym"],
+    "correctAnswer": "A physical copy of a view"
+  },
+  {
+    "category": "dbms",
+    "question": "Which of the following is true about BCNF?",
+    "options": ["Stronger than 3NF", "Weaker than 3NF", "Same as 3NF", "Not related to 3NF"],
+    "correctAnswer": "Stronger than 3NF"
+  },
+  {
+    "category": "dbms",
+    "question": "What is the use of the WITH CHECK OPTION in a view?",
+    "options": ["To allow updates", "To restrict updates violating view condition", "To make view updatable", "To encrypt view"],
+    "correctAnswer": "To restrict updates violating view condition"
+  },
+  {
+    "category": "dbms",
+    "question": "Which of the following is a DML command?",
+    "options": ["CREATE", "ALTER", "INSERT", "DROP"],
+    "correctAnswer": "INSERT"
+  },
+  {
+    "category": "dbms",
+    "question": "What is a self-join?",
+    "options": ["Join with another database", "Join a table to itself", "Join with system tables", "Join with views only"],
+    "correctAnswer": "Join a table to itself"
+  },
+  {
+    "category": "dbms",
+    "question": "Which function returns the current date and time in MySQL?",
+    "options": ["NOW()", "CURDATE()", "CURTIME()", "SYSDATE()"],
+    "correctAnswer": "NOW()"
+  },
+  {
+    "category": "dbms",
+    "question": "What is the maximum length of an identifier in SQL standard?",
+    "options": ["64", "128", "256", "No limit"],
+    "correctAnswer": "128"
+  },
+  {
+    "category": "dbms",
+    "question": "Which of the following is true about a unique constraint?",
+    "options": ["Allows one NULL", "Does not allow NULL", "Allows multiple NULLs", "Same as primary key"],
+    "correctAnswer": "Allows one NULL"
+  },
+  {
+    "category": "dbms",
+    "question": "What is a correlated subquery?",
+    "options": ["Independent subquery", "Subquery referencing outer query", "Nested subquery only", "Subquery in FROM clause"],
+    "correctAnswer": "Subquery referencing outer query"
+  },
+  {
+    "category": "dbms",
+    "question": "Which of the following is NOT a type of index in SQL Server?",
+    "options": ["Clustered", "Non-clustered", "Columnstore", "Rowstore"],
+    "correctAnswer": "Rowstore"
+  },
+  {
+    "category": "dbms",
+    "question": "What is the purpose of the ROLLBACK command?",
+    "options": ["To save changes", "To undo changes", "To lock table", "To commit partially"],
+    "correctAnswer": "To undo changes"
+  },
+  {
+    "category": "dbms",
+    "question": "In which normal form are all determinants candidate keys?",
+    "options": ["1NF", "2NF", "3NF", "BCNF"],
+    "correctAnswer": "BCNF"
+  },
+  {
+    "category": "dbms",
+    "question": "What is a database cursor?",
+    "options": ["A pointer to query result", "A temporary table", "A stored procedure", "A view"],
+    "correctAnswer": "A pointer to query result"
+  },
+  {
+    "category": "dbms",
+    "question": "Which of the following supports multi-version concurrency control (MVCC)?",
+    "options": ["MySQL InnoDB", "SQL Server", "Oracle", "All of the above"],
+    "correctAnswer": "All of the above"
+  },
+  {
+    "category": "dbms",
+    "question": "What is the difference between DELETE and TRUNCATE?",
+    "options": ["TRUNCATE is faster and doesn't log", "DELETE is faster", "Both are same", "TRUNCATE allows WHERE"],
+    "correctAnswer": "TRUNCATE is faster and doesn't log"
+  },
+  {
+    "category": "dbms",
+    "question": "Which of the following is a window function?",
+    "options": ["SUM()", "ROW_NUMBER()", "COUNT()", "AVG()"],
+    "correctAnswer": "ROW_NUMBER()"
+  },
+  {
+    "category": "dbms",
+    "question": "What is a surrogate key?",
+    "options": ["Natural key", "Artificial key with no meaning", "Composite key", "Foreign key"],
+    "correctAnswer": "Artificial key with no meaning"
+  },
+  {
+    "category": "dbms",
+    "question": "Which command is used to change data in a table?",
+    "options": ["INSERT", "UPDATE", "ALTER", "MODIFY"],
+    "correctAnswer": "UPDATE"
+  },
+  {
+    "category": "dbms",
+    "question": "What is the result of 1=1 in a WHERE clause with no rows?",
+    "options": ["1 row", "0 rows", "Error", "NULL"],
+    "correctAnswer": "0 rows"
+  },
+  {
+    "category": "dbms",
+    "question": "Which of the following is true about views?",
+    "options": ["They store data physically", "They are virtual tables", "They cannot be indexed", "They are always updatable"],
+    "correctAnswer": "They are virtual tables"
+  }
+]
