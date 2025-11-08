@@ -1,0 +1,417 @@
+[
+  {
+    "category": "os",
+    "question": "Which scheduling algorithm is preemptive?",
+    "options": [
+      "FCFS",
+      "SJF (non-preemptive)",
+      "Round Robin",
+      "Priority (non-preemptive)"
+    ],
+    "correctAnswer": "Round Robin"
+  },
+  {
+    "category": "os",
+    "question": "A process waiting for I/O is typically in which state?",
+    "options": ["Running", "Ready", "Blocked/Waiting", "New"],
+    "correctAnswer": "Blocked/Waiting"
+  },
+  {
+    "category": "os",
+    "question": "Which is used to prevent deadlock by resource ordering?",
+    "options": [
+      "Banker's Algorithm",
+      "Peterson's Algorithm",
+      "Mutex",
+      "Starvation"
+    ],
+    "correctAnswer": "Banker's Algorithm"
+  },
+  {
+    "category": "os",
+    "question": "What is the main purpose of the page replacement algorithm in virtual memory?",
+    "options": [
+      "To minimize page faults",
+      "To maximize CPU utilization",
+      "To reduce context switching",
+      "To increase I/O operations"
+    ],
+    "correctAnswer": "To minimize page faults"
+  },
+  {
+    "category": "os",
+    "question": "Which of the following is a necessary condition for deadlock?",
+    "options": [
+      "Mutual Exclusion",
+      "Starvation",
+      "Race Condition",
+      "Priority Inversion"
+    ],
+    "correctAnswer": "Mutual Exclusion"
+  },
+  {
+    "category": "os",
+    "question": "In Round Robin scheduling, the time quantum is too large. What happens?",
+    "options": [
+      "It behaves like FCFS",
+      "High context switch overhead",
+      "Starvation of short processes",
+      "Increased throughput"
+    ],
+    "correctAnswer": "It behaves like FCFS"
+  },
+  {
+    "category": "os",
+    "question": "Which memory allocation scheme suffers from external fragmentation?",
+    "options": ["Segmentation", "Paging", "Contiguous Allocation", "Swapping"],
+    "correctAnswer": "Contiguous Allocation"
+  },
+  {
+    "category": "os",
+    "question": "What does the 'thrashing' phenomenon indicate?",
+    "options": [
+      "Too much swapping",
+      "High CPU utilization",
+      "Low page fault rate",
+      "Efficient memory use"
+    ],
+    "correctAnswer": "Too much swapping"
+  },
+  {
+    "category": "os",
+    "question": "Which system call is used to create a new process in Unix?",
+    "options": ["exec()", "fork()", "wait()", "exit()"],
+    "correctAnswer": "fork()"
+  },
+  {
+    "category": "os",
+    "question": "In a multilevel feedback queue, a process moves to a lower priority queue if:",
+    "options": [
+      "It uses full time quantum",
+      "It completes I/O quickly",
+      "It is a system process",
+      "It is newly created"
+    ],
+    "correctAnswer": "It uses full time quantum"
+  },
+  {
+    "category": "os",
+    "question": "Which page replacement algorithm guarantees the minimum number of page faults?",
+    "options": ["FIFO", "LRU", "Optimal", "Random"],
+    "correctAnswer": "Optimal"
+  },
+  {
+    "category": "os",
+    "question": "What is the primary advantage of using threads over processes?",
+    "options": [
+      "Less memory overhead",
+      "Better security isolation",
+      "Independent address space",
+      "No shared memory"
+    ],
+    "correctAnswer": "Less memory overhead"
+  },
+  {
+    "category": "os",
+    "question": "Which file system uses journaling to improve reliability?",
+    "options": ["FAT32", "NTFS", "ext2", "ISO 9660"],
+    "correctAnswer": "NTFS"
+  },
+  {
+    "category": "os",
+    "question": "What is the maximum length of a filename in ext4 filesystem?",
+    "options": ["255 bytes", "260 bytes", "8 characters", "No limit"],
+    "correctAnswer": "255 bytes"
+  },
+  {
+    "category": "os",
+    "question": "Which of the following is a critical section problem solution?",
+    "options": [
+      "Semaphores",
+      "Monitors",
+      "Both A and B",
+      "None"
+    ],
+    "correctAnswer": "Both A and B"
+  },
+  {
+    "category": "os",
+    "question": "In demand paging, what is a 'page fault'?",
+    "options": [
+      "Access to invalid memory",
+      "Page not in main memory",
+      "Memory overflow",
+      "Disk failure"
+    ],
+    "correctAnswer": "Page not in main memory"
+  },
+  {
+    "category": "os",
+    "question": "Which scheduling algorithm suffers from the convoy effect?",
+    "options": ["SJF", "Round Robin", "Priority", "Multilevel Queue"],
+    "correctAnswer": "SJF"
+  },
+  {
+    "category": "os",
+    "question": "What is the purpose of the TLB (Translation Lookaside Buffer)?",
+    "options": [
+      "To speed up virtual to physical address translation",
+      "To store page table",
+      "To cache disk blocks",
+      "To manage CPU registers"
+    ],
+    "correctAnswer": "To speed up virtual to physical address translation"
+  },
+  {
+    "category": "os",
+    "question": "Which of the following is NOT a process state?",
+    "options": ["Ready", "Running", "Terminated", "Suspended"],
+    "correctAnswer": "Suspended"
+  },
+  {
+    "category": "os",
+    "question": "What is the default signal sent by 'kill' command in Unix?",
+    "options": ["SIGKILL", "SIGTERM", "SIGHUP", "SIGSTOP"],
+    "correctAnswer": "SIGTERM"
+  },
+  {
+    "category": "os",
+    "question": "In Linux, what does the 'swapon' command do?",
+    "options": [
+      "Enables a swap partition",
+      "Disables swap",
+      "Shows swap usage",
+      "Formats swap"
+    ],
+    "correctAnswer": "Enables a swap partition"
+  },
+  {
+    "category": "os",
+    "question": "Which algorithm is used in disk scheduling to reduce seek time?",
+    "options": ["FCFS", "SSTF", "SCAN", "All of the above"],
+    "correctAnswer": "All of the above"
+  },
+  {
+    "category": "os",
+    "question": "What is a zombie process?",
+    "options": [
+      "A process that has terminated but not reaped",
+      "A process consuming high CPU",
+      "A hung process",
+      "A system daemon"
+    ],
+    "correctAnswer": "A process that has terminated but not reaped"
+  },
+  {
+    "category": "os",
+    "question": "Which of the following is a synchronization primitive?",
+    "options": ["Mutex", "Semaphore", "Condition Variable", "All of the above"],
+    "correctAnswer": "All of the above"
+  },
+  {
+    "category": "os",
+    "question": "In Belady's anomaly, increasing the number of frames can:",
+    "options": [
+      "Decrease page faults",
+      "Increase page faults",
+      "No change",
+      "Cause system crash"
+    ],
+    "correctAnswer": "Increase page faults"
+  },
+  {
+    "category": "os",
+    "question": "What is the maximum number of processes in Linux (default)?",
+    "options": ["32768", "65536", "Unlimited", "Depends on PID size"],
+    "correctAnswer": "32768"
+  },
+  {
+    "category": "os",
+    "question": "Which command changes the priority of a process in Linux?",
+    "options": ["nice", "renice", "Both A and B", "priority"],
+    "correctAnswer": "Both A and B"
+  },
+  {
+    "category": "os",
+    "question": "What is the size of a page in most modern systems?",
+    "options": ["2 KB", "4 KB", "8 KB", "16 KB"],
+    "correctAnswer": "4 KB"
+  },
+  {
+    "category": "os",
+    "question": "Which of the following is a real-time scheduling policy in Linux?",
+    "options": ["SCHED_FIFO", "SCHED_RR", "Both A and B", "SCHED_NORMAL"],
+    "correctAnswer": "Both A and B"
+  },
+  {
+    "category": "os",
+    "question": "What does the 'dirty bit' indicate in a page table entry?",
+    "options": [
+      "Page has been modified",
+      "Page is invalid",
+      "Page is in disk",
+      "Page is locked"
+    ],
+    "correctAnswer": "Page has been modified"
+  },
+  {
+    "category": "os",
+    "question": "Which file contains the kernel boot parameters in Linux?",
+    "options": ["/boot/grub.conf", "/proc/cmdline", "/etc/fstab", "/boot/loader"],
+    "correctAnswer": "/proc/cmdline"
+  },
+  {
+    "category": "os",
+    "question": "What is the primary goal of the Banker's Algorithm?",
+    "options": [
+      "Deadlock avoidance",
+      "Deadlock detection",
+      "Deadlock recovery",
+      "Resource allocation"
+    ],
+    "correctAnswer": "Deadlock avoidance"
+  },
+  {
+    "category": "os",
+    "question": "In CSCAN disk scheduling, the head moves:",
+    "options": [
+      "In one direction only",
+      "Back and forth",
+      "To the nearest request",
+      "Randomly"
+    ],
+    "correctAnswer": "In one direction only"
+  },
+  {
+    "category": "os",
+    "question": "Which of the following is a monolithic kernel?",
+    "options": ["Linux", "Microkernel", "Hybrid", "Exokernel"],
+    "correctAnswer": "Linux"
+  },
+  {
+    "category": "os",
+    "question": "What is the maximum size of an inode in ext4?",
+    "options": ["128 bytes", "256 bytes", "512 bytes", "1024 bytes"],
+    "correctAnswer": "256 bytes"
+  },
+  {
+    "category": "os",
+    "question": "Which signal cannot be caught or ignored?",
+    "options": ["SIGTERM", "SIGKILL", "SIGSTOP", "Both B and C"],
+    "correctAnswer": "Both B and C"
+  },
+  {
+    "category": "os",
+    "question": "What is the purpose of the 'working set' model?",
+    "options": [
+      "To determine minimum frames needed",
+      "To schedule processes",
+      "To allocate disk space",
+      "To manage cache"
+    ],
+    "correctAnswer": "To determine minimum frames needed"
+  },
+  {
+    "category": "os",
+    "question": "In Linux, what does /proc filesystem represent?",
+    "options": [
+      "Process information",
+      "Hardware info",
+      "Kernel parameters",
+      "All of the above"
+    ],
+    "correctAnswer": "All of the above"
+  },
+  {
+    "category": "os",
+    "question": "Which of the following is NOT a memory management technique?",
+    "options": ["Paging", "Segmentation", "Swapping", "Caching"],
+    "correctAnswer": "Caching"
+  },
+  {
+    "category": "os",
+    "question": "What is the default time slice in Round Robin (Linux)?",
+    "options": ["10 ms", "100 ms", "1 sec", "Depends on priority"],
+    "correctAnswer": "100 ms"
+  },
+  {
+    "category": "os",
+    "question": "Which command shows real-time process activity?",
+    "options": ["ps", "top", "htop", "Both B and C"],
+    "correctAnswer": "Both B and C"
+  },
+  {
+    "category": "os",
+    "question": "What is a 'spinlock' used for?",
+    "options": [
+      "Short critical sections",
+      "Long waits",
+      "I/O operations",
+      "User processes"
+    ],
+    "correctAnswer": "Short critical sections"
+  },
+  {
+    "category": "os",
+    "question": "Which of the following supports copy-on-write?",
+    "options": ["fork()", "exec()", "wait()", "exit()"],
+    "correctAnswer": "fork()"
+  },
+  {
+    "category": "os",
+    "question": "What is the maximum number of hard links to a file in Linux?",
+    "options": ["1", "255", "65535", "No limit"],
+    "correctAnswer": "65535"
+  },
+  {
+    "category": "os",
+    "question": "Which algorithm replaces the page that will not be used for the longest time?",
+    "options": ["FIFO", "LRU", "Optimal", "MFU"],
+    "correctAnswer": "Optimal"
+  },
+  {
+    "category": "os",
+    "question": "What is the 'nice' value range in Linux?",
+    "options": ["0 to 19", "-20 to 19", "1 to 100", "-100 to 100"],
+    "correctAnswer": "-20 to 19"
+  },
+  {
+    "category": "os",
+    "question": "Which of the following is a distributed file system?",
+    "options": ["ext4", "NTFS", "NFS", "FAT32"],
+    "correctAnswer": "NFS"
+  },
+  {
+    "category": "os",
+    "question": "What does the 'OOM Killer' do in Linux?",
+    "options": [
+      "Kills processes when memory is low",
+      "Restarts system",
+      "Swaps out pages",
+      "Increases swap space"
+    ],
+    "correctAnswer": "Kills processes when memory is low"
+  },
+  {
+    "category": "os",
+    "question": "Which of the following is true about microkernel architecture?",
+    "options": [
+      "Drivers run in kernel space",
+      "Minimal kernel, services in user space",
+      "Faster than monolithic",
+      "Used in Windows"
+    ],
+    "correctAnswer": "Minimal kernel, services in user space"
+  },
+  {
+    "category": "os",
+    "question": "What is the purpose of the 'sync' command?",
+    "options": [
+      "Flush filesystem buffers",
+      "Synchronize clocks",
+      "Backup data",
+      "Update packages"
+    ],
+    "correctAnswer": "Flush filesystem buffers"
+  }
+]
